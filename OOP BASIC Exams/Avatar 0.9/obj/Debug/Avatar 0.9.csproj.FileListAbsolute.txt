@@ -1,0 +1,14 @@
+c:\users\kurs1410\documents\visual studio 2015\Projects\Avatar 0.9\Avatar 0.9\bin\Debug\Avatar 0.9.exe.config
+G:\Avatar 0.9\Avatar 0.9\obj\Debug\Avatar 0.9.csprojAssemblyReference.cache
+G:\Avatar 0.9\Avatar 0.9\obj\Debug\Avatar 0.9.csproj.CoreCompileInputs.cache
+G:\Avatar 0.9\Avatar 0.9\bin\Debug\Avatar 0.9.exe.config
+G:\Avatar 0.9\Avatar 0.9\bin\Debug\Avatar 0.9.exe
+G:\Avatar 0.9\Avatar 0.9\bin\Debug\Avatar 0.9.pdb
+G:\Avatar 0.9\Avatar 0.9\obj\Debug\Avatar 0.9.exe
+G:\Avatar 0.9\Avatar 0.9\obj\Debug\Avatar 0.9.pdb
+F:\Avatar 0.9\Avatar 0.9\bin\Debug\Avatar 0.9.exe.config
+F:\Avatar 0.9\Avatar 0.9\obj\Debug\Avatar 0.9.exe
+F:\Avatar 0.9\Avatar 0.9\obj\Debug\Avatar 0.9.pdb
+F:\Avatar 0.9\Avatar 0.9\bin\Debug\Avatar 0.9.exe
+F:\Avatar 0.9\Avatar 0.9\bin\Debug\Avatar 0.9.pdb
+F:\Avatar 0.9\Avatar 0.9\obj\Debug\Avatar 0.9.csprojResolveAssemblyReference.cache

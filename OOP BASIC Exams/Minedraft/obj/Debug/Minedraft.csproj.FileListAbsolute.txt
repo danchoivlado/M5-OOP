@@ -1,0 +1,6 @@
+F:\Minedraft\Minedraft\bin\Debug\Minedraft.exe.config
+F:\Minedraft\Minedraft\obj\Debug\Minedraft.csprojResolveAssemblyReference.cache
+F:\Minedraft\Minedraft\bin\Debug\Minedraft.exe
+F:\Minedraft\Minedraft\bin\Debug\Minedraft.pdb
+F:\Minedraft\Minedraft\obj\Debug\Minedraft.exe
+F:\Minedraft\Minedraft\obj\Debug\Minedraft.pdb
