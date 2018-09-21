@@ -1,0 +1,7 @@
+C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\obj\Debug\ExamPaw.csprojResolveAssemblyReference.cache
+C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\obj\Debug\ExamPaw.csproj.CoreCompileInputs.cache
+C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\bin\Debug\ExamPaw.exe.config
+C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\bin\Debug\ExamPaw.exe
+C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\bin\Debug\ExamPaw.pdb
+C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\obj\Debug\ExamPaw.exe
+C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\obj\Debug\ExamPaw.pdb
