@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System Split Exam", "System Split Exam\System Split Exam.csproj", "{7C87059E-0521-45F5-99FC-1E24A4099F58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tets", "tets\tets.csproj", "{903E98D7-6142-4968-9F71-5FE884329D6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C87059E-0521-45F5-99FC-1E24A4099F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C87059E-0521-45F5-99FC-1E24A4099F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C87059E-0521-45F5-99FC-1E24A4099F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C87059E-0521-45F5-99FC-1E24A4099F58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{903E98D7-6142-4968-9F71-5FE884329D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{903E98D7-6142-4968-9F71-5FE884329D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{903E98D7-6142-4968-9F71-5FE884329D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{903E98D7-6142-4968-9F71-5FE884329D6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4857CB0B-6BA9-4989-B4B9-D4E64DD4F37A}
+	EndGlobalSection
+EndGlobal

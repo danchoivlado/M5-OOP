@@ -1,0 +1,7 @@
+C:\Users\dancho\source\repos\System Split Exam\System Split Exam\bin\Debug\System Split Exam.exe.config
+C:\Users\dancho\source\repos\System Split Exam\System Split Exam\bin\Debug\System Split Exam.exe
+C:\Users\dancho\source\repos\System Split Exam\System Split Exam\bin\Debug\System Split Exam.pdb
+C:\Users\dancho\source\repos\System Split Exam\System Split Exam\obj\Debug\System Split Exam.csprojAssemblyReference.cache
+C:\Users\dancho\source\repos\System Split Exam\System Split Exam\obj\Debug\System Split Exam.csproj.CoreCompileInputs.cache
+C:\Users\dancho\source\repos\System Split Exam\System Split Exam\obj\Debug\System Split Exam.exe
+C:\Users\dancho\source\repos\System Split Exam\System Split Exam\obj\Debug\System Split Exam.pdb
