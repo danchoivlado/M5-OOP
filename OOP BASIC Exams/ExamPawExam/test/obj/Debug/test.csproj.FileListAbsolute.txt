@@ -1,0 +1,6 @@
+C:\Users\danch_000\source\repos\ExamPaw\test\bin\Debug\test.exe.config
+C:\Users\danch_000\source\repos\ExamPaw\test\bin\Debug\test.exe
+C:\Users\danch_000\source\repos\ExamPaw\test\bin\Debug\test.pdb
+C:\Users\danch_000\source\repos\ExamPaw\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+C:\Users\danch_000\source\repos\ExamPaw\test\obj\Debug\test.exe
+C:\Users\danch_000\source\repos\ExamPaw\test\obj\Debug\test.pdb
