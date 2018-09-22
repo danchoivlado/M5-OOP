@@ -39,5 +39,11 @@ namespace ExamPaw.Centres
                 base.animals.Remove(animal);
             }
         }
+
+        public void Send4Cast(CastrationCenter CurrCastrationCenter)
+        {
+            CurrCastrationCenter.AcceptAnimals(base.animals);
+            base.animals.Clear();
+        }
     }
 }

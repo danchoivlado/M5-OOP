@@ -5,3 +5,10 @@ C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\bin\Debug\ExamPaw.exe
 C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\bin\Debug\ExamPaw.pdb
 C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\obj\Debug\ExamPaw.exe
 C:\Users\danch_000\source\repos\ExamPaw\ExamPaw\obj\Debug\ExamPaw.pdb
+C:\Users\dancho\Source\Repos\M5-OOP6\OOP BASIC Exams\ExamPawExam\ExamPaw\bin\Debug\ExamPaw.exe.config
+C:\Users\dancho\Source\Repos\M5-OOP6\OOP BASIC Exams\ExamPawExam\ExamPaw\bin\Debug\ExamPaw.exe
+C:\Users\dancho\Source\Repos\M5-OOP6\OOP BASIC Exams\ExamPawExam\ExamPaw\bin\Debug\ExamPaw.pdb
+C:\Users\dancho\Source\Repos\M5-OOP6\OOP BASIC Exams\ExamPawExam\ExamPaw\obj\Debug\ExamPaw.csproj.CoreCompileInputs.cache
+C:\Users\dancho\Source\Repos\M5-OOP6\OOP BASIC Exams\ExamPawExam\ExamPaw\obj\Debug\ExamPaw.exe
+C:\Users\dancho\Source\Repos\M5-OOP6\OOP BASIC Exams\ExamPawExam\ExamPaw\obj\Debug\ExamPaw.pdb
+C:\Users\dancho\Source\Repos\M5-OOP6\OOP BASIC Exams\ExamPawExam\ExamPaw\obj\Debug\ExamPaw.csprojAssemblyReference.cache

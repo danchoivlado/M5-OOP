@@ -46,6 +46,7 @@
     <Compile Include="Animals\Cat.cs" />
     <Compile Include="Animals\Dog.cs" />
     <Compile Include="Centres\AdoptionCenter.cs" />
+    <Compile Include="Centres\CastrationCenter.cs" />
     <Compile Include="Centres\CleansingCenter.cs" />
     <Compile Include="Centres\Center.cs" />
     <Compile Include="Core\CommandCenter.cs" />

@@ -14,14 +14,59 @@ namespace ExamPaw.Core
         private List<CleansingCenter> CleansingCenterlis;
         //private List<Animal> animals;
         private List<string> adopted;
-
         public List<string> AllCleansedAnimals { get; private set; }
-
+        private List<CastrationCenter> CastrationCentersLis;
+        private List<string> Castrated;
+        
         public CommandCenter()
         {
             this.AdoptionCenterlis = new List<AdoptionCenter>();
             this.CleansingCenterlis = new List<CleansingCenter>();
+            this.CastrationCentersLis = new List<CastrationCenter>();
+            this.Castrated = new List<string>();
+            this.adopted = new List<string>();
+            this.AllCleansedAnimals = new List<string>();
           //  this.animals = new List<Animal>();
+        }
+
+        public void RegisterCastrationCenter(string[] arr)
+        {
+            string name = arr[1];
+            this.CastrationCentersLis.Add(new CastrationCenter(name));
+        }
+
+        public void SendForCastration(string[] arr)
+        {
+            string adoptionCenterName = arr[1];
+            string castrationCenterName = arr[2];
+            AdoptionCenter CurrAdop = this.AdoptionCenterlis.Where(se => se.Name == adoptionCenterName).First();
+            CastrationCenter CurrCastr = this.CastrationCentersLis.Where(se => se.Name == castrationCenterName).First();
+            CurrAdop.Send4Cast(CurrCastr);
+        }
+
+        public void Castrate(string[] arr)
+        {
+            string name = arr[1];
+            CastrationCenter CurrCenter = this.CastrationCentersLis.First(se => se.Name == name);
+            foreach (var animal in CurrCenter.animals)
+            {
+                CurrCenter.Castrate(this.AdoptionCenterlis.Find(se => se.Name == animal.DefCenter), animal);
+                this.Castrated.Add(animal.Name);
+            }
+            foreach (var animal in this.Castrated)
+            {
+                CurrCenter.animals.Remove(CurrCenter.animals.First(se=>se.Name==animal));
+            }
+            
+        }
+        public string CastrationStatistics()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Paw Inc. Regular Castration Statistics");
+            sb.AppendLine($"Castration Centers: {this.CastrationCentersLis.Count}");
+            if (Castrated.Count == 0) sb.AppendLine($"Castrated Animals: None");
+            else sb.AppendLine($"Castrated Animals: {string.Join(", ", Castrated.OrderBy(se => se))}");
+            return sb.ToString().Trim();
         }
 
         public void RegisterCleansingCenter(string[] arr)
@@ -112,9 +157,9 @@ namespace ExamPaw.Core
             sb.AppendLine("Paw Incorporative Regular Statistics");
             sb.AppendLine($"Adoption Centers: {this.AdoptionCenterlis.Count}");
             sb.AppendLine($"Cleansing Centers: {this.CleansingCenterlis.Count}");
-            if (this.adopted.Count == 0) sb.AppendLine("None");
+            if (this.adopted.Count == 0) sb.AppendLine("Cleansed Animals: None");
             else sb.AppendLine($"Adopted Animals: {string.Join(", ", this.adopted.OrderBy(se=>se))}");
-            if (this.CleansingCenterlis.Count == 0) sb.AppendLine($"None");
+            if (this.AllCleansedAnimals.Count == 0) sb.AppendLine($"Cleansed Animals: None");
             else sb.AppendLine($"Cleansed Animals: {string.Join(", ", this.AllCleansedAnimals.OrderBy(se=>se))}");
             sb.AppendLine($"Animals Awaiting Adoption: {this.AdoptionCenterlis.Sum(se=> se.WaitAdob())}");
             sb.AppendLine($"Animals Awaiting Cleansing: {this.CleansingCenterlis.Sum(se=>se.WaitClean())}");

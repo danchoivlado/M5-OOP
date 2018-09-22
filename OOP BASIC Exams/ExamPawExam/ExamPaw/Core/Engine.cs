@@ -21,6 +21,18 @@ namespace ExamPaw.Core
                 string[] command = Console.ReadLine().Split(new char[] {'|',' '},StringSplitOptions.RemoveEmptyEntries).ToArray();
                 switch (command[0])
                 {
+                    case "RegisterCastrationCenter":
+                        cm.RegisterCastrationCenter(command);
+                        break;
+                    case "SendForCastration":
+                        cm.SendForCastration(command);
+                        break;
+                    case "Castrate":
+                        cm.Castrate(command);
+                        break;
+                    case "CastrationStatistics":
+                        Console.WriteLine(cm.CastrationStatistics());
+                        break;
                     case "RegisterCleansingCenter":
                         cm.RegisterCleansingCenter(command);
                         break;
