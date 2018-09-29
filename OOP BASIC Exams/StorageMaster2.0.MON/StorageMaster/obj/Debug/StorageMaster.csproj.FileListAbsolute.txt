@@ -1,0 +1,7 @@
+C:\Users\dancho\Desktop\please\StorageMaster\StorageMaster\bin\Debug\StorageMaster.exe.config
+C:\Users\dancho\Desktop\please\StorageMaster\StorageMaster\bin\Debug\StorageMaster.exe
+C:\Users\dancho\Desktop\please\StorageMaster\StorageMaster\bin\Debug\StorageMaster.pdb
+C:\Users\dancho\Desktop\please\StorageMaster\StorageMaster\obj\Debug\StorageMaster.csprojAssemblyReference.cache
+C:\Users\dancho\Desktop\please\StorageMaster\StorageMaster\obj\Debug\StorageMaster.csproj.CoreCompileInputs.cache
+C:\Users\dancho\Desktop\please\StorageMaster\StorageMaster\obj\Debug\StorageMaster.exe
+C:\Users\dancho\Desktop\please\StorageMaster\StorageMaster\obj\Debug\StorageMaster.pdb
