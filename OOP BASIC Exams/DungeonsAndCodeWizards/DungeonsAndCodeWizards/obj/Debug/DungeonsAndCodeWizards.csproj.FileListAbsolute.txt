@@ -1,0 +1,7 @@
+C:\Users\dancho\Desktop\re2\DungeonsAndCodeWizards\DungeonsAndCodeWizards\bin\Debug\DungeonsAndCodeWizards.exe.config
+C:\Users\dancho\Desktop\re2\DungeonsAndCodeWizards\DungeonsAndCodeWizards\bin\Debug\DungeonsAndCodeWizards.exe
+C:\Users\dancho\Desktop\re2\DungeonsAndCodeWizards\DungeonsAndCodeWizards\bin\Debug\DungeonsAndCodeWizards.pdb
+C:\Users\dancho\Desktop\re2\DungeonsAndCodeWizards\DungeonsAndCodeWizards\obj\Debug\DungeonsAndCodeWizards.csprojAssemblyReference.cache
+C:\Users\dancho\Desktop\re2\DungeonsAndCodeWizards\DungeonsAndCodeWizards\obj\Debug\DungeonsAndCodeWizards.csproj.CoreCompileInputs.cache
+C:\Users\dancho\Desktop\re2\DungeonsAndCodeWizards\DungeonsAndCodeWizards\obj\Debug\DungeonsAndCodeWizards.exe
+C:\Users\dancho\Desktop\re2\DungeonsAndCodeWizards\DungeonsAndCodeWizards\obj\Debug\DungeonsAndCodeWizards.pdb
