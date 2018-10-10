@@ -1,0 +1,7 @@
+C:\Users\danch_000\source\repos\EXAM 8  7 18\EXAM 8  7 18\bin\Debug\EXAM 8  7 18.exe.config
+C:\Users\danch_000\source\repos\EXAM 8  7 18\EXAM 8  7 18\bin\Debug\EXAM 8  7 18.exe
+C:\Users\danch_000\source\repos\EXAM 8  7 18\EXAM 8  7 18\bin\Debug\EXAM 8  7 18.pdb
+C:\Users\danch_000\source\repos\EXAM 8  7 18\EXAM 8  7 18\obj\Debug\EXAM 8  7 18.csprojResolveAssemblyReference.cache
+C:\Users\danch_000\source\repos\EXAM 8  7 18\EXAM 8  7 18\obj\Debug\EXAM 8  7 18.csproj.CoreCompileInputs.cache
+C:\Users\danch_000\source\repos\EXAM 8  7 18\EXAM 8  7 18\obj\Debug\EXAM 8  7 18.exe
+C:\Users\danch_000\source\repos\EXAM 8  7 18\EXAM 8  7 18\obj\Debug\EXAM 8  7 18.pdb

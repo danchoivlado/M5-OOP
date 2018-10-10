@@ -1,0 +1,7 @@
+C:\Users\danch_000\source\repos\GRID\GRID\obj\Debug\GRID.csprojResolveAssemblyReference.cache
+C:\Users\danch_000\source\repos\GRID\GRID\obj\Debug\GRID.csproj.CoreCompileInputs.cache
+C:\Users\danch_000\source\repos\GRID\GRID\bin\Debug\GRID.exe.config
+C:\Users\danch_000\source\repos\GRID\GRID\bin\Debug\GRID.exe
+C:\Users\danch_000\source\repos\GRID\GRID\bin\Debug\GRID.pdb
+C:\Users\danch_000\source\repos\GRID\GRID\obj\Debug\GRID.exe
+C:\Users\danch_000\source\repos\GRID\GRID\obj\Debug\GRID.pdb
