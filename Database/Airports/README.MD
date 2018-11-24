@@ -4,79 +4,7 @@ You have been assigned to work for the government, on the flight-tracking system
 Section 0: Database Overview
 You have been given an Entity / Relationship Diagram of the AMS Database:
 
-The AMS Database holds information about customers, their tickets, the flights to which the tickets are bought, the flights’ origin, destination, airline… And also, the Database holds information about towns.
-Your task is to create a database called airport_management_system. Then you will have to create several tables.
-•	towns – contains information about the towns.
-•	airports – contains information about the airports.
-o	Each airport has a town.
-•	airlines – contains information about the airlines.
-•	customers – contains information about the customers.
-o	Each customer has a home town.
-•	flights – contains information about the flights.
-o	Each flight has an origin airport.
-o	Each flight has a destination airport.
-o	Each flight has an airline.
-•	tickets – contains information about the tickets of the customers and the flights to which they are.
-o	Each ticket has a customer.
-o	Each ticket has a flight.
-Make sure you implement the whole database correctly on your local machine, so that you could work with it.
-The instructions you’ll be given will be the minimal needed for you to implement the database.
-Section 1: Data Definition Language (DDL) – 30 pts
-01.	Table Design
-You have been tasked to create the tables in the database by the following models:
 
-towns
-Column Name	Data Type	Constraints
-town_id	Integer, from 1 to 2,147,483,647.	Primary Key
-town_name	A string containing a maximum of 30 characters. Unicode is NOT needed.	NULL is NOT permitted.
-
-airports
-Column Name	Data Type	Constraints
-airport_id	Integer, from 1 to 2,147,483,647.	Primary Key
-airport_name	A string containing a maximum of 50 characters. Unicode is NOT needed.	NULL is NOT permitted.
-town_id	Integer, from 1 to 2,147,483,647.	Relationship with table towns.
-
-airlines
-Column Name	Data Type	Constraints
-airline_id	Integer, from 1 to 2,147,483,647.	Primary Key
-airline_name	A string containing a maximum of 30 characters. Unicode is NOT needed.	NULL is NOT permitted.
-nationality	A string containing a maximum of 30 characters. Unicode is NOT needed.	NULL is NOT permitted.
-rating	Integer, from 0 to 2,147,483,647.	Has a default value of 0.
-
-customers
-Column Name	Data Type	Constraints
-customer_id	Integer, from 0 to 2,147,483,647.	Primary Key
-first_name	A string containing a maximum of 20 characters. Unicode is NOT needed.	NULL is NOT permitted.
-last_name	A string containing a maximum of 20 characters. Unicode is NOT needed.	NULL is NOT permitted.
-date_of_birth	Date WITHOUT time.	NULL is NOT permitted.
-gender	A single character.	Will contain one of the following values: ‘M’, ‘F’.
-home_town_id	Integer, from 0 to 2,147,483,647.	Relationship with table towns.
-
-flights
-Column Name	Data Type	Constraints
-flight_id	Integer, from 0 to 2,147,483,647.	Primary Key
-AUTO_INCREMENT
-departure_time	Date WITH time.	NULL is NOT permitted.
-arrival_time	Date WITH time.	NULL is NOT permitted.
-status	A string containing a maximum of 9 characters. Unicode is NOT needed.	WILL contain one of the following values:  ‘Departing’, ‘Delayed’, ‘Arrived’, ‘Cancelled’.
-origin_airport_id	Integer, from 0 to 2,147,483,647.	Relationship with table airports.
-destination_airport_id	Integer, from 0 to 2,147,483,647.	Relationship with table airports.
-airline_id	Integer, from 0 to 2,147,483,647.	Relationship with table airlines.
-
-tickets
-Column Name	Data Type	Constraints
-ticket_id	Integer, from 0 to 2,147,483,647.	Primary Key
-AUTO_INCREMENT
-price	Decimal with length of 8, 2 digits after the decimal point.	NULL is NOT permitted.
-class	A string containing a maximum of 6 characters. 
-Unicode is NOT needed.	Will contain one of the following values:  ‘First’, ‘Second’, ‘Third’.
-seat	A string containing a maximum of 5 characters. 
-Unicode is NOT needed.	NULL is NOT permitted.
-customer_id	Integer, from 0 to 2,147,483,647.	Relationship with table customers.
-flight_id	Integer, from 0 to 2,147,483,647.	Relationship with table flights.
-
-Submit your solutions in Judge on the first task. Submit all SQL table creation statements.
-Section 2: Data Manipulation Language (DML) – 30 pts
 Here we need to do several manipulations in the database, like changing data, adding data, adding tables etc.
 02.	Data Insertion
 You will need to insert several records into the flights table. For every airline with id between 1 and 10 INCLUSIVELY, insert a record in the flights table. 
