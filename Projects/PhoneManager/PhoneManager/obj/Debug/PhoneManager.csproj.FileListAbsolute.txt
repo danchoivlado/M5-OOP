@@ -1,0 +1,12 @@
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\bin\Debug\PhoneManager.exe.config
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\bin\Debug\PhoneManager.exe
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\bin\Debug\PhoneManager.pdb
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\obj\Debug\PhoneManager.csprojAssemblyReference.cache
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\obj\Debug\PhoneManager.AddBut.resources
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\obj\Debug\PhoneManager.Properties.Resources.resources
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\obj\Debug\PhoneManager.csproj.GenerateResource.cache
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\obj\Debug\PhoneManager.csproj.CoreCompileInputs.cache
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\obj\Debug\PhoneManager.exe
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\obj\Debug\PhoneManager.pdb
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\obj\Debug\PhoneManager.RegisterPage.resources
+C:\Users\C#\Desktop\MetaBase\PhoneManager\PhoneManager\obj\Debug\PhoneManager.Form3.resources
