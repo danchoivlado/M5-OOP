@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareStore", "HardwareStore.csproj", "{D93DDC6C-C266-4FA4-A3EC-4CF653048A08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\UnitTests\UnitTests.csproj", "{AFB3313E-8917-4D0F-B350-45F3BC060C8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D93DDC6C-C266-4FA4-A3EC-4CF653048A08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D93DDC6C-C266-4FA4-A3EC-4CF653048A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D93DDC6C-C266-4FA4-A3EC-4CF653048A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D93DDC6C-C266-4FA4-A3EC-4CF653048A08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFB3313E-8917-4D0F-B350-45F3BC060C8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFB3313E-8917-4D0F-B350-45F3BC060C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFB3313E-8917-4D0F-B350-45F3BC060C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFB3313E-8917-4D0F-B350-45F3BC060C8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1688C3A-DC73-4F3B-9091-E276C2E541EB}
+	EndGlobalSection
+EndGlobal
