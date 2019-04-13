@@ -34,6 +34,8 @@
             this.TotalLbl = new System.Windows.Forms.Label();
             this.ProfitLBL = new System.Windows.Forms.Label();
             this.DailyProfitLbl = new System.Windows.Forms.Label();
+            this.SalesReportComboBox = new System.Windows.Forms.ComboBox();
+            this.PickLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SalesReportDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,9 +64,9 @@
             this.GrantTotalLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.GrantTotalLbl.Location = new System.Drawing.Point(12, 452);
             this.GrantTotalLbl.Name = "GrantTotalLbl";
-            this.GrantTotalLbl.Size = new System.Drawing.Size(258, 33);
+            this.GrantTotalLbl.Size = new System.Drawing.Size(169, 33);
             this.GrantTotalLbl.TabIndex = 1;
-            this.GrantTotalLbl.Text = "Grand Total Today";
+            this.GrantTotalLbl.Text = "Grand Total";
             // 
             // TotalLbl
             // 
@@ -93,9 +95,35 @@
             this.DailyProfitLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.DailyProfitLbl.Location = new System.Drawing.Point(12, 509);
             this.DailyProfitLbl.Name = "DailyProfitLbl";
-            this.DailyProfitLbl.Size = new System.Drawing.Size(240, 33);
+            this.DailyProfitLbl.Size = new System.Drawing.Size(180, 33);
             this.DailyProfitLbl.TabIndex = 3;
-            this.DailyProfitLbl.Text = "Profit Of The Day";
+            this.DailyProfitLbl.Text = "Profit Of The";
+            // 
+            // SalesReportComboBox
+            // 
+            this.SalesReportComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SalesReportComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SalesReportComboBox.FormattingEnabled = true;
+            this.SalesReportComboBox.Items.AddRange(new object[] {
+            "Yearly Sales Report",
+            "Monthly Sales Report",
+            "Daily Sales Report"});
+            this.SalesReportComboBox.Location = new System.Drawing.Point(851, 80);
+            this.SalesReportComboBox.Name = "SalesReportComboBox";
+            this.SalesReportComboBox.Size = new System.Drawing.Size(218, 33);
+            this.SalesReportComboBox.TabIndex = 5;
+            this.SalesReportComboBox.SelectedValueChanged += new System.EventHandler(this.SalesReportComboBox_SelectedValueChanged);
+            // 
+            // PickLabel
+            // 
+            this.PickLabel.AutoSize = true;
+            this.PickLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PickLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.PickLabel.Location = new System.Drawing.Point(802, 29);
+            this.PickLabel.Name = "PickLabel";
+            this.PickLabel.Size = new System.Drawing.Size(280, 33);
+            this.PickLabel.TabIndex = 6;
+            this.PickLabel.Text = "Select Sales Report ";
             // 
             // SalesReportForm
             // 
@@ -103,6 +131,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(49)))), ((int)(((byte)(60)))));
             this.ClientSize = new System.Drawing.Size(1094, 571);
+            this.Controls.Add(this.PickLabel);
+            this.Controls.Add(this.SalesReportComboBox);
             this.Controls.Add(this.ProfitLBL);
             this.Controls.Add(this.DailyProfitLbl);
             this.Controls.Add(this.TotalLbl);
@@ -125,5 +155,7 @@
         private System.Windows.Forms.Label TotalLbl;
         private System.Windows.Forms.Label ProfitLBL;
         private System.Windows.Forms.Label DailyProfitLbl;
+        private System.Windows.Forms.ComboBox SalesReportComboBox;
+        private System.Windows.Forms.Label PickLabel;
     }
 }

@@ -105,6 +105,7 @@ namespace HardwareStore.View
 
         private void PayBut_Click(object sender, EventArgs e)
         {
+            this.InvalidBarcodeLbl.Visible = false;
             if (this.ItemsDataGrid.RowCount > 0)
             {
                 if (this.cartItems.Any(a => a.Quantity <= 0))//Checks for zero quantity
@@ -118,7 +119,7 @@ namespace HardwareStore.View
                     this.PayForm.ShowDialog();
                     this.InvalidItemQuantyLbl.Visible = false;
                 }
-                
+
             }
             else
                 this.InvalidItemsLbl.Visible = true;
@@ -137,8 +138,14 @@ namespace HardwareStore.View
                 this.ItemsDataGrid.DataSource = this.cartItems.ToList();
                 this.InvalidItemsLbl.Visible = false;
 
-
-                UpdateTextbox(new CartItem());
+                if (this.cartItems.Count < 1)
+                {
+                    UpdateTextbox(new CartItem());
+                }
+                else
+                {
+                    UpdateTextbox(this.cartItems.Last());
+                }
             }
             else
                 this.InvalidItemsLbl.Visible = true;
@@ -236,7 +243,7 @@ namespace HardwareStore.View
 
         private void InvoiceForm_Activated(object sender, EventArgs e)
         {
-            if (this.InvoiceCount !=this.InvoiceBLL.InvoiceCount())
+            if (this.InvoiceCount != this.InvoiceBLL.InvoiceCount())
             {
                 this.cartItems.Clear();
                 this.ItemsDataGrid.DataSource = this.cartItems.ToList();

@@ -61,7 +61,7 @@ namespace HardwareStore.BusinessLogic
             return list;
         }
 
-        public List<DailySales> SalesReprotInfo()
+        public List<DailySales> DailySalesReprotInfo()
         {
             List<DailySales> DailySalesList = new List<DailySales>();
             var Date = DateTime.Now.Date;
@@ -100,6 +100,83 @@ namespace HardwareStore.BusinessLogic
             return DailySalesList;
         }
 
+        public List<DailySales> MonthlySalesReprotInfo()
+        {
+            List<DailySales> DailySalesList = new List<DailySales>();
+            var Date = DateTime.Now;
+
+            var Invoices = this.officeStoreContext.Invoice.Where(a => a.Date.Year==Date.Year&& a.Date.Month == Date.Month);
+            //Finds the current invoice
+            foreach (var Invoice in Invoices)
+            {
+                var InvoiceItems = this.officeStoreContext.InvoiceItems.Where(a => a.InvoiceId == Invoice.Id);
+
+                foreach (var InvoiceItem in InvoiceItems)
+                {
+                    DailySales dailySales = new DailySales();
+
+                    var Desciption = this.officeStoreContext.Items.First(a => a.Id == InvoiceItem.ItemId);
+
+                    dailySales.ProductNumber = InvoiceItem.ItemId;
+                    if (DailySalesList.Any(a => a.Description == Desciption.ProductName))
+                    {
+                        var item = DailySalesList.First(a => a.Description == Desciption.ProductName);
+
+                        item.Quantity += InvoiceItem.Quantity;
+                        item.SinglePrice = InvoiceItem.SinglePrice;
+                        item.Total += InvoiceItem.Total;
+                    }
+                    else
+                    {
+                        dailySales.Description = Desciption.ProductName;
+                        dailySales.Quantity = InvoiceItem.Quantity;
+                        dailySales.SinglePrice = InvoiceItem.SinglePrice;
+                        dailySales.Total = InvoiceItem.Total;
+                        DailySalesList.Add(dailySales);
+                    }
+                }
+            }
+            return DailySalesList;
+        }
+
+        public List<DailySales> YearlySalesReprotInfo()
+        {
+            List<DailySales> DailySalesList = new List<DailySales>();
+            var Date = DateTime.Now;
+
+            var Invoices = this.officeStoreContext.Invoice.Where(a => a.Date.Year == Date.Year);
+            //Finds the current invoice
+            foreach (var Invoice in Invoices)
+            {
+                var InvoiceItems = this.officeStoreContext.InvoiceItems.Where(a => a.InvoiceId == Invoice.Id);
+
+                foreach (var InvoiceItem in InvoiceItems)
+                {
+                    DailySales dailySales = new DailySales();
+
+                    var Desciption = this.officeStoreContext.Items.First(a => a.Id == InvoiceItem.ItemId);
+
+                    dailySales.ProductNumber = InvoiceItem.ItemId;
+                    if (DailySalesList.Any(a => a.Description == Desciption.ProductName))
+                    {
+                        var item = DailySalesList.First(a => a.Description == Desciption.ProductName);
+
+                        item.Quantity += InvoiceItem.Quantity;
+                        item.SinglePrice = InvoiceItem.SinglePrice;
+                        item.Total += InvoiceItem.Total;
+                    }
+                    else
+                    {
+                        dailySales.Description = Desciption.ProductName;
+                        dailySales.Quantity = InvoiceItem.Quantity;
+                        dailySales.SinglePrice = InvoiceItem.SinglePrice;
+                        dailySales.Total = InvoiceItem.Total;
+                        DailySalesList.Add(dailySales);
+                    }
+                }
+            }
+            return DailySalesList;
+        }
         public string StatusText(bool IsChecked)
         {
             if (IsChecked)
