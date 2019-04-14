@@ -22,6 +22,10 @@ namespace HardwareStore.BusinessLogic
             this.officeStoreContext = MockContext;
         }
 
+        /// <summary>
+        /// Adds item to officeStoreContext;
+        /// </summary>
+        /// <param name="item">Object of item.</param>
         public void CreateItem(Items item)
         {
             //Creates item
@@ -29,6 +33,11 @@ namespace HardwareStore.BusinessLogic
             this.officeStoreContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Updates the selected item.
+        /// </summary>
+        /// <param name="Item1">Object of the item to update.</param>
+        /// <param name="ItemId">Id of the item in the database. </param>
         public void UpdateItem(Items Item1, string ItemId)
         {
             //Updates current item
@@ -43,6 +52,11 @@ namespace HardwareStore.BusinessLogic
             this.officeStoreContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Check if the item exists
+        /// </summary>
+        /// <param name="Barcode">Barcode of the selected item </param>
+        /// <returns> Returns true if item exist or folse if item not exist</returns>
         public bool IsItemExists(string Barcode)
         {
             //Checks if item exists
@@ -54,6 +68,10 @@ namespace HardwareStore.BusinessLogic
             return true;
         }
 
+        /// <summary>
+        /// Gets all the information of Items in the database and provides it to the DataGrid
+        /// </summary>
+        /// <returns> Returns List of items.</returns>
         public List<Items> GetAllInfo()
         {
             //Collects info from database
@@ -61,6 +79,10 @@ namespace HardwareStore.BusinessLogic
             return list;
         }
 
+        /// <summary>
+        /// Gets all the item saled today
+        /// </summary>
+        /// <returns> Returns List of saled items.</returns>
         public List<DailySales> DailySalesReprotInfo()
         {
             List<DailySales> DailySalesList = new List<DailySales>();
@@ -100,6 +122,10 @@ namespace HardwareStore.BusinessLogic
             return DailySalesList;
         }
 
+        /// <summary>
+        /// Gets all the item saled this month
+        /// </summary>
+        /// <returns> Returns List of saled items.</returns>
         public List<DailySales> MonthlySalesReprotInfo()
         {
             List<DailySales> DailySalesList = new List<DailySales>();
@@ -139,6 +165,10 @@ namespace HardwareStore.BusinessLogic
             return DailySalesList;
         }
 
+        /// <summary>
+        /// Gets all the item saled this Year
+        /// </summary>
+        /// <returns> Returns List of saled items.</returns>
         public List<DailySales> YearlySalesReprotInfo()
         {
             List<DailySales> DailySalesList = new List<DailySales>();
@@ -177,6 +207,12 @@ namespace HardwareStore.BusinessLogic
             }
             return DailySalesList;
         }
+
+        /// <summary>
+        /// Provides the status of the item  
+        /// </summary>
+        /// <param name="IsChecked"></param>
+        /// <returns> If its true returns "Second Hand" if its false "Factory New".</returns>
         public string StatusText(bool IsChecked)
         {
             if (IsChecked)
@@ -186,6 +222,10 @@ namespace HardwareStore.BusinessLogic
             return "Factory New";
         }
 
+        /// <summary>
+        /// Checks string and returns bool
+        /// </summary>
+        /// <param name="status">Given status</param>
         public bool IsChecked(string status)
         {
             if (status == "Second Hand")
@@ -195,6 +235,10 @@ namespace HardwareStore.BusinessLogic
             return false;
         }
 
+        /// <summary>
+        /// Deletes Item Everywere from the database
+        /// </summary>
+        /// <param name="Id">Id of the selected item</param>
         public void Delete(string Id)
         {
             var ItemToDelete = this.officeStoreContext.Items.First(a => a.Id == Id);
@@ -207,6 +251,11 @@ namespace HardwareStore.BusinessLogic
             this.officeStoreContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Generate profit of the day due to provided Lis of Items
+        /// </summary>
+        /// <param name="dailySalesList">List of the all the items choosen by the client</param>
+        /// <returns> Returns the sum of the profit.</returns>
         public double GenerateProfitOfTheDay(List<DailySales> dailySalesList)
         {
             double Total = 0d;

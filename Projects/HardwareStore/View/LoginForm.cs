@@ -28,7 +28,12 @@ namespace HardwareStore
             this.PasswordTxtBox._TextBox.PasswordChar = '*';
         }
 
-
+        /// <summary>
+        /// Check if there is User with the given Name and password 
+        /// and if there is countinue to the MainMenuForm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SignInBut_Click(object sender, EventArgs e)
         {
             if (this.registerLoginBLL.Login(this.NameTxtBox.text, this.PasswordTxtBox.text))//If user exists
@@ -44,6 +49,11 @@ namespace HardwareStore
                 this.WrongDataLbl.Visible = true;
         }
 
+        /// <summary>
+        /// Opens the Register form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SignUpBut_Click(object sender, EventArgs e)
         {
             //Creates new form

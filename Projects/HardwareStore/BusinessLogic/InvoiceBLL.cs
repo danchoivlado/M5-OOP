@@ -21,6 +21,13 @@ namespace HardwareStore.BusinessLogic
             this.officeStoreContext = mockcontex;
         }
 
+        /// <summary>
+        /// Add to database all the ordered Products to the table Invoice Items
+        /// Creates Invoice and adds it to table Invoices
+        /// </summary>
+        /// <param name="cartItems">List of all the ordered Items</param>
+        /// <param name="CashAmount">Cash ammount given by the client</param>
+        /// <returns>Returns the change for the client</returns>
         public double SaveInvoice(List<CartItem> cartItems, string CashAmount )
         {
             var Id = this.officeStoreContext.Invoice.Count() + 1;
@@ -54,6 +61,11 @@ namespace HardwareStore.BusinessLogic
             return (double.Parse(CashAmount) - invoice.Total);
         }
 
+        /// <summary>
+        /// Gets the last Invoice of the database
+        /// Show how the Recipe will look.
+        /// </summary>
+        /// <returns>String of the Recipe</returns>
         public string ShowRecipe()
         {
             StringBuilder sb = new StringBuilder();
@@ -82,6 +94,11 @@ namespace HardwareStore.BusinessLogic
             return sb.ToString(); ;
         }
 
+        /// <summary>
+        /// Checks if there is not Item with this Barcode
+        /// </summary>
+        /// <param name="Barcode">Given Barcode</param>
+        /// <returns>true or false</returns>
         public bool HasNotItem(string Barcode)
         {
             //Checks if item exists 
@@ -91,6 +108,11 @@ namespace HardwareStore.BusinessLogic
             return false;
         }
 
+        /// <summary>
+        /// Genrete Line used in the ShowRecipe method wih all the needed space between the words
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>Perfect ordered line</returns>
         private  string GenerateItems(InvoiceItems item)
         {
             //Generates item
@@ -99,12 +121,22 @@ namespace HardwareStore.BusinessLogic
             return $"{ItemName}{Spaces(ItemName, 32)}{item.Quantity}{Spaces(item.Quantity.ToString(), 5)}{item.SinglePrice:f2}{Spaces(item.SinglePrice.ToString(), 8)}{Total:f2} ";
         }
 
+        /// <summary>
+        /// Generete spaces between the word due to Item lenght and Spaces of the line 
+        /// </summary>
+        /// <param name="Item">Word of the certain line</param>
+        /// <param name="TotalSpaces">The spaces needed for the line</param>
+        /// <returns></returns>
         private  string Spaces(string Item, int TotalSpaces)
         {
             //Generate Spaces
             return new string(' ', TotalSpaces - Item.Length);
         }
 
+        /// <summary>
+        /// Gets all the records of the invoice table 
+        /// </summary>
+        /// <returns>The count of the records</returns>
         public int InvoiceCount()
         {
             return this.officeStoreContext.Invoice.Count();

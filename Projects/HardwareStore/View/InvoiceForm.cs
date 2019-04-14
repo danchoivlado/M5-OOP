@@ -18,6 +18,7 @@ namespace HardwareStore.View
         MainFrom MainFrom;
         InvoiceBLL InvoiceBLL;
         private int InvoiceCount;
+
         public InvoiceForm()
         {
             InitializeComponent();
@@ -30,6 +31,9 @@ namespace HardwareStore.View
             GenrateCustomerInfoListBox();
         }
 
+        /// <summary>
+        /// Makes the base of the CustomerInfoListBox
+        /// </summary>
         private void GenrateCustomerInfoListBox()
         {
             //Sets info for the listbox
@@ -41,6 +45,11 @@ namespace HardwareStore.View
             this.CustomerInfoTxtList.SelectionMode = SelectionMode.None;
         }
 
+        /// <summary>
+        /// Creates CartItem and put it int DataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextItemBut_Click(object sender, EventArgs e)
         {
             if (!Validate(this.ScanBarcodeTxtBox.Text, int.Parse(this.QuantityTxtBox.Text)))
@@ -72,6 +81,10 @@ namespace HardwareStore.View
             }
         }
 
+        /// <summary>
+        /// Updates the CustomerInfoTextbox by the given Item
+        /// </summary>
+        /// <param name="Item">Last Scanned Item</param>
         private void UpdateTextbox(CartItem Item)
         {
             //Updates info for the listbox
@@ -81,9 +94,9 @@ namespace HardwareStore.View
             this.CustomerInfoTxtList.Items[4] = $"Grand Total                    {(cartItems.Sum(a => a.Total)):f2}";
         }
 
-
-
-
+        /// <summary>
+        /// Makes the design for the ItemDataGrid
+        /// </summary>
         private void DesignConfigurator()
         {
             ItemsDataGrid.BorderStyle = BorderStyle.None;
@@ -103,6 +116,11 @@ namespace HardwareStore.View
             this.QuantityTxtBox.Text = "1";
         }
 
+        /// <summary>
+        /// If Validate Opens the Pay form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PayBut_Click(object sender, EventArgs e)
         {
             this.InvalidBarcodeLbl.Visible = false;
@@ -125,6 +143,11 @@ namespace HardwareStore.View
                 this.InvalidItemsLbl.Visible = true;
         }
 
+        /// <summary>
+        /// Deletes the selected product from the ItemsDataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteItemBut_Click(object sender, EventArgs e)
         {
             //Deletes Selected Item
@@ -151,6 +174,11 @@ namespace HardwareStore.View
                 this.InvalidItemsLbl.Visible = true;
         }
 
+        /// <summary>
+        /// Decrease the quantity of selected product from the ItemsDataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChangeQuantityBut_Click(object sender, EventArgs e)
         {
             if (this.ItemsDataGrid.RowCount > 0)//If Selected  
@@ -171,6 +199,11 @@ namespace HardwareStore.View
                 this.InvalidItemsLbl.Visible = true;
         }
 
+        /// <summary>
+        /// Opens MainMenu Form and closes the current one
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainMenu_Click(object sender, EventArgs e)
         {
             //Returns to main menu
@@ -180,6 +213,11 @@ namespace HardwareStore.View
             this.Close();
         }
 
+        /// <summary>
+        /// Increases the quantity of selected product from the ItemsDataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void QuantityPlusBut_Click(object sender, EventArgs e)
         {
             if (this.ItemsDataGrid.RowCount > 0) //If Selected  
@@ -200,6 +238,11 @@ namespace HardwareStore.View
                 this.InvalidItemsLbl.Visible = true;
         }
 
+        /// <summary>
+        /// Performs Add Button CLick when Scaned a Barcode
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ScanBarcodeTxtBox_KeyDown(object sender, KeyEventArgs e)
         {
             //Performs click when key enter is registered
@@ -214,6 +257,12 @@ namespace HardwareStore.View
             }
         }
 
+        /// <summary>
+        /// Validates the Given Inforamtion by the user
+        /// </summary>
+        /// <param name="Barcode"></param>
+        /// <param name="Quantity"></param>
+        /// <returns></returns>
         private bool Validate(string Barcode, int Quantity)
         {
             //Checks for invalid fields
@@ -241,6 +290,12 @@ namespace HardwareStore.View
             return IsInvalid;
         }
 
+        /// <summary>
+        /// When Focused Checks if the invoice count changed
+        /// if its changed clear the texbox and get ready for new transaction
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InvoiceForm_Activated(object sender, EventArgs e)
         {
             if (this.InvoiceCount != this.InvoiceBLL.InvoiceCount())

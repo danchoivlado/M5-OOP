@@ -27,12 +27,19 @@ namespace HardwareStore.View
             UpdateLabels();
         }
 
+        /// <summary>
+        /// Sums teh total cash in the DailySalesList
+        /// Generate the profit of all the items in the list
+        /// </summary>
         private void UpdateLabels()
         {
             this.TotalLbl.Text = $"{this.DailySalesList.Sum(a => a.Total):f2} лв";//Returns the Total money of the day
             this.ProfitLBL.Text = $"{this.UpdateCreateSalesReport.GenerateProfitOfTheDay(this.DailySalesList):f2} лв";
         }
 
+        /// <summary>
+        /// Gets all the sold  items from the given range
+        /// </summary>
         private void DailySalesReport()
         {
             this.DailySalesList = new List<DailySales>();
@@ -42,6 +49,9 @@ namespace HardwareStore.View
             SalesReportDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
+        /// <summary>
+        /// Gets all the sold  items from the given range
+        /// </summary>
         private void MonthlySalesReport()
         {
             this.DailySalesList = new List<DailySales>();
@@ -51,6 +61,9 @@ namespace HardwareStore.View
             SalesReportDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
+        /// <summary>
+        /// Gets all the soled  items from the given range
+        /// </summary>
         private void YearlySalesReport()
         {
             this.DailySalesList = new List<DailySales>();
@@ -60,6 +73,9 @@ namespace HardwareStore.View
             SalesReportDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
+        /// <summary>
+        /// Make the Design for the DataGrid
+        /// </summary>
         private void DesignConfigurator()
         {
             SalesReportDataGrid.BorderStyle = BorderStyle.None;
@@ -75,6 +91,11 @@ namespace HardwareStore.View
             SalesReportDataGrid.RowTemplate.Height = 40;
         }
 
+        /// <summary>
+        /// When the user picks other item from the combo box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SalesReportComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
              var SelectedIndex =this.SalesReportComboBox.SelectedIndex;
@@ -97,6 +118,12 @@ namespace HardwareStore.View
             }
             UpdateLabels();
         }
+
+        /// <summary>
+        /// Updates the txt for the Labels
+        /// </summary>
+        /// <param name="First"></param>
+        /// <param name="Second"></param>
         private void ChangeLabelText(string First,string Second)
         {
             this.GrantTotalLbl.Text = $"Grand Total {First}";

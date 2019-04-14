@@ -30,6 +30,9 @@ namespace HardwareStore.View
             this.FormBorderStyle = FormBorderStyle.FixedDialog;//Disables Resizing
         }
 
+        /// <summary>
+        /// Make the improved design of the DataGrid
+        /// </summary>
         private void DesignConfigurator()
         {
             ItemsGridView.BorderStyle = BorderStyle.None;
@@ -46,6 +49,11 @@ namespace HardwareStore.View
 
         }
 
+        /// <summary>
+        /// Opens NewItem form 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreateBut_Click(object sender, EventArgs e)
         {
             var form1 = new NewItemForm();
@@ -61,7 +69,11 @@ namespace HardwareStore.View
             //Hides the last Column 
         }
 
-
+        /// <summary>
+        /// Opens NewItem form and get ready for update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateBut_Click(object sender, EventArgs e)
         {
             if (ItemsGridView.SelectedRows.Count == 1) //If selected
@@ -84,7 +96,11 @@ namespace HardwareStore.View
             NewItemForm.Show();
         }
 
-
+        /// <summary>
+        /// Delete the selected item form the DataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteBut_Click(object sender, EventArgs e)
         {
             if (ItemsGridView.SelectedRows.Count == 1)
@@ -96,11 +112,14 @@ namespace HardwareStore.View
             UpdateGrid();
         }
 
+        /// <summary>
+        /// Updates the grid when form Focused
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StoreItemsForm_Activated(object sender, EventArgs e)
         {
             UpdateGrid();
         }
-
-       
     }
 }

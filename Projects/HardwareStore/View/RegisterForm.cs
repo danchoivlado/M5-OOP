@@ -29,6 +29,11 @@ namespace HardwareStore.View
 
         }
 
+        /// <summary>
+        /// Registers Employee by the given parameters
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SignUpBut_Click(object sender, EventArgs e)
         {
             if (!Validate(this.FirstNameTxtBox.text,
@@ -41,6 +46,14 @@ namespace HardwareStore.View
             }
         }
 
+        /// <summary>
+        /// Validates the info from the txtBoxe f
+        /// </summary>
+        /// <param name="FirstName"></param>
+        /// <param name="LastName"></param>
+        /// <param name="Town"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
         private bool Validate(string FirstName, string LastName, string Town, string Password)
         {
             bool IsInvalid = false;

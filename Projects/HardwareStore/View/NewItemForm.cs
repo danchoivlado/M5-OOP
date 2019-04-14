@@ -28,6 +28,11 @@ namespace HardwareStore.View
             this.ActiveControl = this.BarcodeTxtBox;
         }
 
+        /// <summary>
+        /// Constructor for the Update Button
+        /// with the info from the given object
+        /// </summary>
+        /// <param name="Item">Object that we will take the info</param>
         public NewItemForm(Items Item)
         {
             InitializeComponent();
@@ -39,6 +44,11 @@ namespace HardwareStore.View
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
         }
 
+        /// <summary>
+        /// Creates item object and saves it to the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreateBut_Click_1(object sender, EventArgs e)
         {
 
@@ -75,6 +85,9 @@ namespace HardwareStore.View
             this.Close();
         }
 
+        /// <summary>
+        /// Reset the text of all the texboxes
+        /// </summary>
         private void ClearDataFromTxtBoxes()
         {
             //clears the info from all the fields
@@ -86,6 +99,10 @@ namespace HardwareStore.View
             this.SecondHandCheckBox.Checked = false;
         }
 
+        /// <summary>
+        /// Paste all the info from the given object
+        /// </summary>
+        /// <param name="Item"></param>
         private void PasteItemInfo(Items Item)
         {
             //Paste the info from the class to the form
@@ -99,6 +116,10 @@ namespace HardwareStore.View
 
         }
 
+        /// <summary>
+        /// Gets the from the field and converts it to object
+        /// </summary>
+        /// <returns>Item object</returns>
         private Items ToClass()
         {
             //Gets the from the field and converts it to class
@@ -114,6 +135,15 @@ namespace HardwareStore.View
             return item;
         }
 
+        /// <summary>
+        /// Validates the given information by the user 
+        /// </summary>
+        /// <param name="Barcode"></param>
+        /// <param name="ProductName"></param>
+        /// <param name="OriginalPrice"></param>
+        /// <param name="SalesPrice"></param>
+        /// <param name="Quantity"></param>
+        /// <returns>If all its validated correctly returns true </returns>
         private bool Validate(string Barcode, string ProductName, string OriginalPrice,
             string SalesPrice, string Quantity)
         {

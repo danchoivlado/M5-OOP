@@ -23,6 +23,12 @@ namespace HardwareStore.BusinessLogic
             this.officestoreContext = new OfficeStoreContext();
         }
 
+        /// <summary>
+        /// Check if there is employee with given name and password
+        /// </summary>
+        /// <param name="LoginName">Given username</param>
+        /// <param name="password">Given password</param>
+        /// <returns> Returns true when there is employee both with given username and password.</returns>
         public bool Login(string LoginName, string password)
         {
             //Return bool if there is employee with this name and password
@@ -34,6 +40,14 @@ namespace HardwareStore.BusinessLogic
             return false;
         }
 
+        /// <summary>
+        /// Register employee with given FirstName, LastName, Password
+        /// Check if there already Town in the database and creates if there is not
+        /// </summary>
+        /// <param name="FirstName">Given FirstName</param>
+        /// <param name="LastName">GIven LastName</param>
+        /// <param name="Password">Given passwor</param>
+        /// <param name="TownName">Given TownName</param>
         public void Register(string FirstName, string LastName, string TownName, string Password)
         {
             //Registe employee
@@ -60,6 +74,11 @@ namespace HardwareStore.BusinessLogic
             this.officestoreContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Gives the Name and Addres of the store
+        /// on the initial star both are empty
+        /// </summary>
+        /// <returns>Return strin[]{StoreName, StoreAddress}</returns>
         public string[] GetNameAddressIfExists()
         {
             //Check and returns info if exists
@@ -68,6 +87,11 @@ namespace HardwareStore.BusinessLogic
             return new string[2] { StoreInfo.Name, StoreInfo.Address };
         }
 
+        /// <summary>
+        /// Saves the given by the user Name and Address
+        /// </summary>
+        /// <param name="StoreAddress">The addres of the store</param>
+        /// <param name="StoreName">The name of the store</param>
         public void SaveData(string StoreName, string StoreAddress)
         {
             //Updates data 
@@ -78,6 +102,11 @@ namespace HardwareStore.BusinessLogic
             this.officestoreContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Delete the table of lastlogin if its over 35 records
+        /// Add employeeID and Logined time and date to the database
+        /// </summary>
+        /// <param name="EmployeeName">Given employeeName</param>
         public void SaveLogined(string EmployeeName)
         {
             //Save last logined
@@ -89,8 +118,6 @@ namespace HardwareStore.BusinessLogic
             this.officestoreContext.LastLogin.Add(new LastLogin() { EmployeeId = Employee.Id, DateLimeLogined = DateTime.Now });
             this.officestoreContext.SaveChanges();
         }
-
-       
     }
 }
     

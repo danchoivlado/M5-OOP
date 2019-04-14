@@ -31,6 +31,12 @@ namespace HardwareStore.BusinessLogic
             this.Total = Math.Round(this.Quantity * this.SinglePrice, 2);
         }
 
+        /// <summary>
+        /// Finds the Item from the database with the given Barcode 
+        /// and with that info create CartItem
+        /// </summary>
+        /// <param name="Barcode">Barcode of the Item selected by the client</param>
+        /// <param name="Quantity">Quantity of the item selected by the client</param>
         public CartItem(string Barcode, string Quantity)
         {
             this.officestoreContext = new OfficeStoreContext();
@@ -42,12 +48,18 @@ namespace HardwareStore.BusinessLogic
             this.Total =Math.Round(this.Quantity*this.SinglePrice,2);
         }
 
+        /// <summary>
+        /// Decrease the quantity of the Selected Item by the client with one 
+        /// </summary>
         public void QuantityMinus()
         {
             this.Quantity--;
             this.Total = this.Quantity * this.SinglePrice;
         }
 
+        /// <summary>
+        /// Increases the quantity of the Selected Item by the client with one 
+        /// </summary>
         public void QuantityPlus()
         {
             this.Quantity++;

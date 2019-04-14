@@ -26,6 +26,11 @@ namespace HardwareStore.View
             this.FormBorderStyle = FormBorderStyle.FixedDialog;//Disables Resizing
         }
 
+        /// <summary>
+        /// Saves the info given by the user to the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveBut_Click_1(object sender, EventArgs e)
         {
             string StoreName = this.StoreNameTxtBox.Text;
