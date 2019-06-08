@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
@@ -14,14 +17,19 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using App1.Models;
 
 namespace App1
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
+        public static bool BGWorker =true;
+        // Background
+        private BackgroundWorker bw = new BackgroundWorker();
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -29,7 +37,63 @@ namespace App1
         public App()
         {
             this.InitializeComponent();
+            //BGWorker = true;
             this.Suspending += OnSuspending;
+
+            bw.WorkerReportsProgress = true;
+            bw.WorkerSupportsCancellation = true;
+            bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+            bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            bw.RunWorkerAsync();
+        }
+
+        private  void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            
+            SerialPort mySerialPort = new SerialPort("COM4");
+
+            mySerialPort.BaudRate = 9600;
+            mySerialPort.Parity = Parity.None;
+            mySerialPort.StopBits = StopBits.One;
+            mySerialPort.DataBits = 8;
+            mySerialPort.Handshake = Handshake.None;
+            mySerialPort.RtsEnable = true;
+
+            // mySerialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+
+            mySerialPort.Open();
+            while (true)
+            {
+                // Perform a time consuming operation and report progress.
+                //System.Threading.Thread.Sleep(1000);
+                //worker.ReportProgress(i);
+                var cmd = mySerialPort.ReadLine();
+                if (cmd.Length > 0)
+                {
+                    Debug.WriteLine(cmd);
+                    //TODO Method 
+                    
+                }
+                if (BGWorker == false)
+                {
+                    Debug.WriteLine("HAHAHHA"+cmd);
+                }
+
+
+            }
+           // mySerialPort.Close();
+        }
+
+        public static void StopWorker()
+        {
+            BGWorker = false;
+        }
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            //Debug.WriteLine (e.ProgressPercentage.ToString() + "%");
+            Debug.WriteLine(e.ProgressPercentage.ToString());
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using App1.BusinessLogic;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,7 +31,17 @@ namespace App1
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
+            EmployeeBLL employeeBLL = new EmployeeBLL();
+            employeeBLL.CreateEmployee(FirstNameTxtBox.Text, SecondNameTxtBox.Text, LastNameTxtBox.Text, EGNTxtBox.Text,
+                DutyTxtBox.Text, TownTxtBox.Text, PhoneNumberTxtBox.Text, CardNUmberTxtBox.Text);
+              
             
+        }
+
+        private void BtnScan_Click(object sender, RoutedEventArgs e)
+        {
+            App.StopWorker();
         }
     }
 }
+

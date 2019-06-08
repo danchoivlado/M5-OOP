@@ -50,7 +50,7 @@
                 </ListBox>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame Name="MainFrame" Margin="0,0,-1246,0"/>
+                <Frame Name="MainFrame" Margin="0,0,-1286,0"/>
             </SplitView.Content>
         </SplitView>
     </StackPanel>

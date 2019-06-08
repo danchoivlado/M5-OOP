@@ -1,4 +1,6 @@
-﻿using System;
+﻿using App1.BusinessLogic;
+using App1.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,23 @@ namespace App1
     /// </summary>
     public sealed partial class EmployeeInfoPage : Page
     {
+        employeemanagementContext emp;
+
         public EmployeeInfoPage()
         {
             this.InitializeComponent();
+            EmployeeBLL emp = new EmployeeBLL();
+            this.ProductsGrid.ItemsSource = emp.GetAllEmployeeInfo();
+        }
+
+        private void ProductsGrid_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Frame.Navigate(typeof(EditPage), e.ClickedItem);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CreatePage));
         }
     }
 }

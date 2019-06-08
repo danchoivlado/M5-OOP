@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="App1.CreatePage"
+    x:Class="App1.EditPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:App1"
@@ -11,7 +11,7 @@
         <ScrollViewer Name="scrollViewRecipes" Margin="0 0 0 0" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Visible" Height="Auto" MaxHeight="1000">
             <StackPanel Padding="50" RenderTransformOrigin="0.505,0.524"  HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" >
                 <!-- Title -->
-                <TextBlock Text="Cteate Page " FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" Margin="0, 0, 0, 50" />
+                <TextBlock Text="Edit Page " FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" Margin="0, 0, 0, 50" />
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 30">
                     <TextBlock Text="First Name" FontSize="20" Width="200" />
@@ -43,12 +43,14 @@
                     <TextBox Name="CardNUmberTxtBox" FontSize="20" Width="400" />
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="0 10">
-                    <Button Name="BtnScan" Content="Scan" FontSize="19" Width="250" Height="35"  Margin="1050 0 20 0" Click="BtnScan_Click" />
+                <StackPanel Orientation="Vertical" Margin="0 40 0 20">
+                    <Button Name="btnAdd" Content="Edit" FontSize="21" Width="500" Height="45" HorizontalAlignment="Center" Padding="0" Margin="0 0 20 0" Click="BtnAdd_Click" />
                 </StackPanel>
-
-                <StackPanel Orientation="Vertical" Margin="0 40">
-                    <Button Name="btnAdd" Content="Create" FontSize="21" Width="500" Height="45" HorizontalAlignment="Center" Padding="0" Margin="0 0 20 0" Click="BtnAdd_Click" />
+                <StackPanel Orientation="Vertical" Margin="0 0">
+                    <Button Name="btnCencel" Content="Cencel" FontSize="18" Width="250" Height="35" HorizontalAlignment="Center" Padding="0" Margin="0 0 20 0" Click="btnCencel_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0 90">
+                    <Button Name="btnDelete" Content="Delete" FontSize="14" Width="150" Height="30" HorizontalAlignment="Center" Padding="0" Margin="0 0 20 0" Click="btnDelete_Click" Background="DarkRed"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

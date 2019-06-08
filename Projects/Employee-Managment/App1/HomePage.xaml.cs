@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using App1.Models;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -22,9 +23,13 @@ namespace App1
     /// </summary>
     public sealed partial class HomePage : Page
     {
+        employeemanagementContext employeemanagementContext;
         public HomePage()
         {
+
             this.InitializeComponent();
+            this.employeemanagementContext = new employeemanagementContext();
+            var name = this.employeemanagementContext.Employees.First().FirstName;
         }
     }
 }

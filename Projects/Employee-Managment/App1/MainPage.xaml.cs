@@ -46,20 +46,20 @@ namespace App1
 
             else if (LookupPageItem.IsSelected)
             {
-                MainFrame.Navigate(typeof(JobPage));
-                PageName.Text = "Create New Employee";
+                MainFrame.Navigate(typeof(EmployeeInfoPage));
+                PageName.Text = "Database Of All EMployees";
             }
 
             else if (CreatePageItem.IsSelected)
             {
                 MainFrame.Navigate(typeof(CreatePage));
-                PageName.Text = "Camet to work graph";
+                PageName.Text = "Create New Employee";
             }
 
             else if (StatsPageItem.IsSelected)
             {
-                MainFrame.Navigate(typeof(EmployeeInfoPage));
-                PageName.Text = "Database Of All EMployees";
+                MainFrame.Navigate(typeof(JobPage));
+                PageName.Text = "Work Graph Page";
             }
         }
     }
