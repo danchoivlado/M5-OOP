@@ -24,7 +24,6 @@ namespace App1
     /// </summary>
     public sealed partial class EmployeeInfoPage : Page
     {
-        employeemanagementContext emp;
 
         public EmployeeInfoPage()
         {

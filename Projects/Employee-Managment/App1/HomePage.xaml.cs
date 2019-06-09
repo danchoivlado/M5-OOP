@@ -23,13 +23,13 @@ namespace App1
     /// </summary>
     public sealed partial class HomePage : Page
     {
-        employeemanagementContext employeemanagementContext;
+        DBContext employeemanagementContext;
         public HomePage()
         {
 
             this.InitializeComponent();
-            this.employeemanagementContext = new employeemanagementContext();
-            var name = this.employeemanagementContext.Employees.First().FirstName;
+            this.employeemanagementContext = new DBContext();
+            var name = this.employeemanagementContext.Employees.FirstOrDefault();
         }
     }
 }

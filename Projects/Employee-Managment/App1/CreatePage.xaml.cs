@@ -24,23 +24,60 @@ namespace App1
     /// </summary>
     public sealed partial class CreatePage : Page
     {
+        EmployeeBLL employeeBLL;
+        GraphBLL GraphBLL;
         public CreatePage()
         {
             this.InitializeComponent();
+            employeeBLL = new EmployeeBLL();
+            this.GraphBLL = new GraphBLL();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            EmployeeBLL employeeBLL = new EmployeeBLL();
-            employeeBLL.CreateEmployee(FirstNameTxtBox.Text, SecondNameTxtBox.Text, LastNameTxtBox.Text, EGNTxtBox.Text,
-                DutyTxtBox.Text, TownTxtBox.Text, PhoneNumberTxtBox.Text, CardNUmberTxtBox.Text);
-              
-            
+            if (Validate())
+            {
+                employeeBLL.CreateEmployee(FirstNameTxtBox.Text, SecondNameTxtBox.Text, LastNameTxtBox.Text, EGNTxtBox.Text,
+                    DutyTxtBox.Text, TownTxtBox.Text, PhoneNumberTxtBox.Text, CardNUmberTxtBox.Text);
+                TextClear();
+                this.ValidateTxtBox.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private bool Validate()
+        {
+            if (FirstNameTxtBox.Text.Length == 0 || SecondNameTxtBox.Text.Length == 0 || LastNameTxtBox.Text.Length == 0 ||
+                EGNTxtBox.Text.Length == 0 || PhoneNumberTxtBox.Text.Length == 0 || CardNUmberTxtBox.Text.Length == 0 ||
+                TownTxtBox.Text.Length == 0 || DutyTxtBox.Text.Length == 0)
+            {
+                this.ValidateTxtBox.Visibility = Visibility.Visible;
+                return false;
+            }
+            return true;
+        }
+
+        private void TextClear()
+        {
+            this.FirstNameTxtBox.Text = "";
+            this.SecondNameTxtBox.Text = "";
+            this.LastNameTxtBox.Text = "";
+            this.EGNTxtBox.Text = "";
+            this.PhoneNumberTxtBox.Text = "";
+            this.CardNUmberTxtBox.Text = "";
+            this.TownTxtBox.Text = "";
+            this.DutyTxtBox.Text = "";
         }
 
         private void BtnScan_Click(object sender, RoutedEventArgs e)
         {
             App.StopWorker();
+            this.BtnGet.Visibility = Visibility.Visible;
+        }
+
+        private void BtnGet_Click(object sender, RoutedEventArgs e)
+        {
+            this.CardNUmberTxtBox.Text = $"{GraphBLL.GetLast()}";
+            this.BtnGet.Visibility = Visibility.Collapsed;
         }
     }
 }

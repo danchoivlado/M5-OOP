@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using App1.Models;
+using System.Threading;
 
 namespace App1
 {
@@ -26,7 +27,8 @@ namespace App1
     /// </summary>
     public sealed partial class App : Application
     {
-        public static bool BGWorker =true;
+        public static bool BGWorker = true;
+        DBContext EmpContex;
         // Background
         private BackgroundWorker bw = new BackgroundWorker();
 
@@ -38,6 +40,7 @@ namespace App1
         {
             this.InitializeComponent();
             //BGWorker = true;
+            this.EmpContex = new DBContext();
             this.Suspending += OnSuspending;
 
             bw.WorkerReportsProgress = true;
@@ -47,11 +50,11 @@ namespace App1
             bw.RunWorkerAsync();
         }
 
-        private  void bw_DoWork(object sender, DoWorkEventArgs e)
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-            
-            SerialPort mySerialPort = new SerialPort("COM4");
+
+            SerialPort mySerialPort = new SerialPort("COM5");
 
             mySerialPort.BaudRate = 9600;
             mySerialPort.Parity = Parity.None;
@@ -73,16 +76,23 @@ namespace App1
                 {
                     Debug.WriteLine(cmd);
                     //TODO Method 
-                    
+
                 }
                 if (BGWorker == false)
                 {
-                    Debug.WriteLine("HAHAHHA"+cmd);
+
+                    Lastscaned CardNumber = new Lastscaned()
+                    {
+                        ScannerCardNumber = $"{cmd}"
+                    };
+                    EmpContex.Lastscaned.Add(CardNumber);
+                    EmpContex.SaveChanges();
+                    BGWorker = true;
                 }
 
 
             }
-           // mySerialPort.Close();
+            // mySerialPort.Close();
         }
 
         public static void StopWorker()

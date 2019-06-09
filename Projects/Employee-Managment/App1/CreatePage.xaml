@@ -44,11 +44,13 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="0 10">
-                    <Button Name="BtnScan" Content="Scan" FontSize="19" Width="250" Height="35"  Margin="1050 0 20 0" Click="BtnScan_Click" />
+                    <Button Name="BtnScan" Content="Scan" FontSize="19" Width="250" Height="35"  Margin="1050 0 20 0" Click="BtnScan_Click"  />
+                    <Button Name="BtnGet" Content="Get Code" FontSize="19" Width="250" Height="35"  Margin="1050 20 20 0" Visibility="Collapsed" Click="BtnGet_Click"   />
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="0 40">
+                <StackPanel Orientation="Vertical" Margin="0 40" Spacing="12">
                     <Button Name="btnAdd" Content="Create" FontSize="21" Width="500" Height="45" HorizontalAlignment="Center" Padding="0" Margin="0 0 20 0" Click="BtnAdd_Click" />
+                    <TextBlock Name="ValidateTxtBox" Text="You must fill all the fields" Foreground="Red" HorizontalAlignment="Center" FontSize="21" Visibility="Collapsed" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

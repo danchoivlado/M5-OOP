@@ -1,4 +1,5 @@
-﻿using App1.Models;
+﻿
+using App1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace App1.BusinessLogic
 {
     class EmployeeBLL
     {
-        employeemanagementContext Database;
+        DBContext Database;
 
         public EmployeeBLL()
         {
-            this.Database = new employeemanagementContext();
+            this.Database = new DBContext();
         }
 
 
@@ -61,6 +62,8 @@ namespace App1.BusinessLogic
 
         }
 
+       
+
         public List<EmployeeInfo> GetAllEmployeeInfo()
         {
             var EmployeeList = new List<EmployeeInfo>();
@@ -82,7 +85,7 @@ namespace App1.BusinessLogic
 
                 EmployeeList.Add(CurEmployee);
             }
-            return EmployeeList;
+            return EmployeeList.OrderBy(x => x.FirstName).ToList();
         }
 
         public void EditEmployee(EmployeeInfo employee)

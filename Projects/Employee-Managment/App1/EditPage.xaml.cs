@@ -26,11 +26,13 @@ namespace App1
     {
         EmployeeInfo ClickedEmployee;
         EmployeeBLL employeeBLL;
+        GraphBLL GraphBLL;
 
         public EditPage()
         {
             this.InitializeComponent();
             this.employeeBLL = new EmployeeBLL();
+            this.GraphBLL = new GraphBLL();
         }
 
         private void FillFIelds()
@@ -53,8 +55,12 @@ namespace App1
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            employeeBLL.EditEmployee(GetFieldInfo());
-            this.Frame.Navigate(typeof(EmployeeInfoPage));
+            if (Validate())
+            {
+                employeeBLL.EditEmployee(GetFieldInfo());
+                this.Frame.Navigate(typeof(EmployeeInfoPage));
+                this.ValidateTxtBox.Visibility = Visibility.Collapsed;
+            }
         }
 
         private EmployeeInfo GetFieldInfo()
@@ -79,6 +85,30 @@ namespace App1
         {
             employeeBLL.DeleteEmployee(GetFieldInfo());
             this.Frame.Navigate(typeof(EmployeeInfoPage));
+        }
+
+        private void BtnScan_Click(object sender, RoutedEventArgs e)
+        {
+            App.StopWorker();
+            this.BtnGet.Visibility = Visibility.Visible;
+        }
+
+        private void BtnGet_Click(object sender, RoutedEventArgs e)
+        {
+            this.CardNUmberTxtBox.Text = $"{GraphBLL.GetLast()}";
+            this.BtnGet.Visibility = Visibility.Collapsed;
+        }
+
+        private bool Validate()
+        {
+            if (FirstNameTxtBox.Text.Length == 0 || SecondNameTxtBox.Text.Length == 0 || LastNameTxtBox.Text.Length == 0 ||
+                EGNTxtBox.Text.Length == 0 || PhoneNumberTxtBox.Text.Length == 0 || CardNUmberTxtBox.Text.Length == 0 ||
+                TownTxtBox.Text.Length == 0 || DutyTxtBox.Text.Length == 0)
+            {
+                this.ValidateTxtBox.Visibility = Visibility.Visible;
+                return false;
+            }
+            return true;
         }
     }
 }

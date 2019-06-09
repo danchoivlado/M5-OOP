@@ -42,15 +42,15 @@
                     <TextBlock Text="Card Number" FontSize="20" Width="200" Margin="100, 0, 0, 0"  />
                     <TextBox Name="CardNUmberTxtBox" FontSize="20" Width="400" />
                 </StackPanel>
-
-                <StackPanel Orientation="Vertical" Margin="0 40 0 20">
+                <StackPanel Orientation="Horizontal" Margin="700 0 0 0"  HorizontalAlignment="Center" Width="600" Spacing="50">
+                    <Button Name="BtnScan" Content="Scan" FontSize="19" Width="250" Height="35"   Click="BtnScan_Click"  />
+                    <Button Name="BtnGet" Content="Get Code" FontSize="19" Width="250" Height="35"   Visibility="Collapsed" Click="BtnGet_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0 10 0 20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="594">
                     <Button Name="btnAdd" Content="Edit" FontSize="21" Width="500" Height="45" HorizontalAlignment="Center" Padding="0" Margin="0 0 20 0" Click="BtnAdd_Click" />
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="0 0">
-                    <Button Name="btnCencel" Content="Cencel" FontSize="18" Width="250" Height="35" HorizontalAlignment="Center" Padding="0" Margin="0 0 20 0" Click="btnCencel_Click"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="0 90">
-                    <Button Name="btnDelete" Content="Delete" FontSize="14" Width="150" Height="30" HorizontalAlignment="Center" Padding="0" Margin="0 0 20 0" Click="btnDelete_Click" Background="DarkRed"/>
+                    <Button Name="btnCencel" Content="Cencel" FontSize="18" Width="250" Height="35" HorizontalAlignment="Center" Padding="0" Margin="0 12 20 0" Click="btnCencel_Click"/>
+                    <TextBlock Name="ValidateTxtBox" Text="You must fill all the fields" Foreground="Red" HorizontalAlignment="Center" FontSize="21" Visibility="Collapsed" />
+                    <Button Name="btnDelete" Content="Delete" FontSize="14" Width="150" Height="30" HorizontalAlignment="Center" Padding="0" Margin="0 60 20 0" Click="btnDelete_Click" Background="DarkRed"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
