@@ -39,7 +39,7 @@ namespace App1
         public App()
         {
             this.InitializeComponent();
-            //BGWorker = true;
+            BGWorker = true;
             this.EmpContex = new DBContext();
             this.Suspending += OnSuspending;
 
@@ -54,14 +54,16 @@ namespace App1
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            SerialPort mySerialPort = new SerialPort("COM5");
+            SerialPort mySerialPort = new SerialPort("COM4");
 
             mySerialPort.BaudRate = 9600;
-            mySerialPort.Parity = Parity.None;
-            mySerialPort.StopBits = StopBits.One;
-            mySerialPort.DataBits = 8;
-            mySerialPort.Handshake = Handshake.None;
-            mySerialPort.RtsEnable = true;
+            //mySerialPort.Parity = Parity.None;
+            //mySerialPort.StopBits = StopBits.One;
+            //mySerialPort.DataBits = 8;
+            //mySerialPort.Handshake = Handshake.None;
+            //mySerialPort.RtsEnable = true;
+           // mySerialPort.
+            
 
             // mySerialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
@@ -71,7 +73,14 @@ namespace App1
                 // Perform a time consuming operation and report progress.
                 //System.Threading.Thread.Sleep(1000);
                 //worker.ReportProgress(i);
-                var cmd = mySerialPort.ReadLine();
+
+                string cmd = string.Empty;
+                for (int i = 1; i <= 10; i++)
+                {
+                    cmd = cmd+ $"{(mySerialPort.ReadLine())}";
+                    cmd = cmd.Substring(0, cmd.Length - 1);
+                }
+                ;
                 if (cmd.Length > 0)
                 {
                     Debug.WriteLine(cmd);
@@ -88,8 +97,20 @@ namespace App1
                     EmpContex.Lastscaned.Add(CardNumber);
                     EmpContex.SaveChanges();
                     BGWorker = true;
+                    mySerialPort.WriteLine("3");
                 }
+                else if(cmd.Length>3)
+                {
+                   // string trimed = cmd.Substring(0,cmd.Length);
+                    var CurEmp = this.EmpContex.Employees.FirstOrDefault(x => x.ScannerCardNumber == cmd);
+                    if(CurEmp==null)
+                    {
+                        mySerialPort.Write("0");
+                    }
+                    else
+                        mySerialPort.Write("1");
 
+                }
 
             }
             // mySerialPort.Close();
@@ -98,6 +119,11 @@ namespace App1
         public static void StopWorker()
         {
             BGWorker = false;
+        }
+
+        public static void StartWorker()
+        {
+            BGWorker = true;
         }
 
         private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)

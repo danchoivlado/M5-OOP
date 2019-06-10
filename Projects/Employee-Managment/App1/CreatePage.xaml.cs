@@ -78,6 +78,7 @@ namespace App1
         {
             this.CardNUmberTxtBox.Text = $"{GraphBLL.GetLast()}";
             this.BtnGet.Visibility = Visibility.Collapsed;
+            App.StartWorker();
         }
     }
 }
