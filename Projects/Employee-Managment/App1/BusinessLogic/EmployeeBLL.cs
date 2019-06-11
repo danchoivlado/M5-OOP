@@ -18,7 +18,7 @@ namespace App1.BusinessLogic
         }
 
 
-        public void CreateEmployee(string FirstName, string SecondName, string LastName, string EGN, string Duty,
+        public Employees CreateEmployee(string FirstName, string SecondName, string LastName, string EGN, string Duty,
             string Town, string TelephoneNumber, string ScannerCardNumber)
         {
             var CurTown = this.Database.Towns.FirstOrDefault(x => x.Name == Town);
@@ -57,51 +57,34 @@ namespace App1.BusinessLogic
 
             this.Database.Employees.Add(NewEmployee);
             this.Database.SaveChanges();
-
-
-
+            return NewEmployee;
         }
 
        
 
-        public List<EmployeeInfo> GetAllEmployeeInfo()
-        {
-            var EmployeeList = new List<EmployeeInfo>();
-
-            foreach (var emp in this.Database.Employees)
-            {
-                var CurTown = this.Database.Towns.First(x => x.Id == emp.TownId);
-                var CurDuty = this.Database.Duties.First(x => x.Id == emp.DutyId);
-
-                EmployeeInfo CurEmployee = new EmployeeInfo();
-                CurEmployee.FirstName = emp.FirstName;
-                CurEmployee.SecondName = emp.SecondName;
-                CurEmployee.LastName = emp.LastName;
-                CurEmployee.EGN = emp.Egn;
-                CurEmployee.Town = CurTown.Name;
-                CurEmployee.Duty = CurDuty.Duty;
-                CurEmployee.TelephoneNumber = emp.TelephoneNumber;
-                CurEmployee.ScannerCardNumber = emp.ScannerCardNumber;
-
-                EmployeeList.Add(CurEmployee);
-            }
-            return EmployeeList.OrderBy(x => x.FirstName).ToList();
-        }
+       
 
         public void EditEmployee(EmployeeInfo employee)
         {
             var CurEmployee = Database.Employees.First(x => x.Egn == employee.EGN);
+            Employeegraph CurEmplGraph = Database.Employeegraph.First(x => x.EmployeeId == CurEmployee.Id);
+            this.Database.Employeegraph.Remove(CurEmplGraph);
             this.Database.Employees.Remove(CurEmployee);
             this.Database.SaveChanges();
             
 
-            CreateEmployee(employee.FirstName, employee.SecondName, employee.LastName, employee.EGN,
+             var NewEmp = CreateEmployee(employee.FirstName, employee.SecondName, employee.LastName, employee.EGN,
                 employee.Duty, employee.Town, employee.TelephoneNumber, employee.ScannerCardNumber);
+            CurEmplGraph.EmployeeId = NewEmp.Id;
+            this.Database.Employeegraph.Add(CurEmplGraph);
+            this.Database.SaveChanges();
         }
 
         public void DeleteEmployee(EmployeeInfo employee)
         {
             var CurEmployee = Database.Employees.First(x => x.Egn == employee.EGN);
+            Employeegraph CurEmplGraph = Database.Employeegraph.First(x => x.EmployeeId == CurEmployee.Id);
+            this.Database.Employeegraph.Remove(CurEmplGraph);
             this.Database.Employees.Remove(CurEmployee);
             this.Database.SaveChanges();
         }

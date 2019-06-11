@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App1.BusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,23 @@ namespace App1
     /// </summary>
     public sealed partial class JobPage : Page
     {
+        GraphBLL graph;
         public JobPage()
         {
             this.InitializeComponent();
+            graph = new GraphBLL();
+            this.ProductsGrid.ItemsSource = graph.GetEmployeeGraph();
         }
+
+
+
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            graph = new GraphBLL();
+            this.ProductsGrid.ItemsSource = graph.GetEmployeeGraph();
+        }
+
+     
+      
     }
 }

@@ -28,8 +28,8 @@ namespace App1
         public EmployeeInfoPage()
         {
             this.InitializeComponent();
-            EmployeeBLL emp = new EmployeeBLL();
-            this.ProductsGrid.ItemsSource = emp.GetAllEmployeeInfo();
+            GraphBLL graph = new GraphBLL();
+            this.ProductsGrid.ItemsSource = graph.GetAllEmployeeInfo();
         }
 
         private void ProductsGrid_ItemClick(object sender, ItemClickEventArgs e)

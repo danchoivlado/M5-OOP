@@ -7,7 +7,43 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="#140f35">
+    <StackPanel Padding="50" >
+
+        <!-- Title -->
+        
+        <TextBlock Text="Employee Graph Page" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" Margin="0, 0, 50, 20" />
+        
+        
+        <!-- header row -->
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="FirstName"  FontSize="20" Padding="10" Width="200" />
+            <TextBlock Text=" LastName" FontSize="20" Padding="10" Width="200" />
+            <TextBlock Text=" Duty" FontSize="20" Padding="10" Width="200" />
+            <TextBlock Text=" TelephoneNumber" FontSize="20" Padding="10" Width="200" />
+            <TextBlock Text=" CameWork" FontSize="20" Padding="10" Width="150" />
+            <TextBlock Text=" LeaveWork" FontSize="20" Padding="10" Width="150" />
+            <TextBlock Text=" HoursWork" FontSize="20" Padding="10" Width="150" />
+        </StackPanel>
+        <!-- data rows -->
+        <ListView IsItemClickEnabled="True" Name="ProductsGrid" Height="450"  >
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding FirstName}"  FontSize="20" Padding="10" Width="200" />
+                        <TextBlock Text="{Binding LastName}" FontSize="20" Padding="10" Width="200" />
+                        <TextBlock Text="{Binding Duty}" FontSize="20" Padding="10" Width="200" />
+                        <TextBlock Text="{Binding PhoneNumber}" FontSize="20" Padding="10" Width="200" />
+                        <TextBlock Text="{Binding CameWork}" FontSize="20" Padding="10" Width="150" />
+                        <TextBlock Text="{Binding LeavedWork}" FontSize="20" Padding="10" Width="150" />
+                        <TextBlock Text="{Binding HoursWorked}" FontSize="20" Padding="10" Width="150" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel>
+            <Button Content="Refresh" Name="BtnRefresh" HorizontalAlignment="Center" FontSize="17" Padding="10 " Width="200" Height="50" Click="BtnRefresh_Click"/>
+        </StackPanel>
+    </StackPanel>
 
 
-       
 </Page>

@@ -39,16 +39,20 @@ namespace App1
         public App()
         {
             this.InitializeComponent();
+            
             BGWorker = true;
             this.EmpContex = new DBContext();
             this.Suspending += OnSuspending;
 
+            CheckDate();
             bw.WorkerReportsProgress = true;
             bw.WorkerSupportsCancellation = true;
             bw.DoWork += new DoWorkEventHandler(bw_DoWork);
             bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             bw.RunWorkerAsync();
         }
+
+       
 
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -62,8 +66,8 @@ namespace App1
             //mySerialPort.DataBits = 8;
             //mySerialPort.Handshake = Handshake.None;
             //mySerialPort.RtsEnable = true;
-           // mySerialPort.
-            
+            // mySerialPort.
+
 
             // mySerialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
@@ -77,7 +81,7 @@ namespace App1
                 string cmd = string.Empty;
                 for (int i = 1; i <= 10; i++)
                 {
-                    cmd = cmd+ $"{(mySerialPort.ReadLine())}";
+                    cmd = cmd + $"{(mySerialPort.ReadLine())}";
                     cmd = cmd.Substring(0, cmd.Length - 1);
                 }
                 ;
@@ -99,21 +103,47 @@ namespace App1
                     BGWorker = true;
                     mySerialPort.WriteLine("3");
                 }
-                else if(cmd.Length>3)
+                else if (cmd.Length > 3)
                 {
-                   // string trimed = cmd.Substring(0,cmd.Length);
+                    // string trimed = cmd.Substring(0,cmd.Length);
                     var CurEmp = this.EmpContex.Employees.FirstOrDefault(x => x.ScannerCardNumber == cmd);
-                    if(CurEmp==null)
+                    if (CurEmp == null)
                     {
                         mySerialPort.Write("0");
                     }
                     else
+                    {
                         mySerialPort.Write("1");
+                        Employeegraph GraphEmployee = this.EmpContex.Employeegraph.FirstOrDefault(x => x.EmployeeId == CurEmp.Id);
+                        if (GraphEmployee == null)
+                        {
+                            GraphEmployee = new Employeegraph()
+                            {
+                                EmployeeId = CurEmp.Id,
+                                CameWork = $"{DateTime.Now.Hour}:{DateTime.Now.Minute}",
+                                LeaveWork = "Didnt Leave",
+                                CurrentDate = $"{DateTime.Now.Day}:{DateTime.Now.Month}"
+                            };
+                            this.EmpContex.Employeegraph.Add(GraphEmployee);
+
+                        }
+                        else
+                        {
+                            if (GraphEmployee.LeaveWork == "Didnt Leave")
+                            {
+                                GraphEmployee.LeaveWork = $"{DateTime.Now.Hour}:{DateTime.Now.Minute}";
+                            }
+                            else
+                            {
+                                GraphEmployee.LeaveWork = "Didnt Leave";
+                            }
+                        }
+                        this.EmpContex.SaveChanges();
+                    }
 
                 }
 
             }
-            // mySerialPort.Close();
         }
 
         public static void StopWorker()
@@ -130,6 +160,17 @@ namespace App1
         {
             //Debug.WriteLine (e.ProgressPercentage.ToString() + "%");
             Debug.WriteLine(e.ProgressPercentage.ToString());
+        }
+
+        private void CheckDate()
+        {
+            if (this.EmpContex.Employeegraph.First().CurrentDate.Split(new string[] { ":" }, StringSplitOptions.None).First() != $"{DateTime.Now.Day}")
+            {
+                foreach (var emp in this.EmpContex.Employeegraph)
+                {
+                    this.EmpContex.Employeegraph.Remove(emp);
+                }
+            }
         }
 
         /// <summary>

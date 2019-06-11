@@ -59,6 +59,10 @@ namespace App1.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.CurrentDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.EmployeeId)
                     .HasColumnName("Employee_id")
                     .HasColumnType("int(11)");
