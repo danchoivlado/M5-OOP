@@ -23,6 +23,7 @@ namespace App1
     /// </summary>
     public sealed partial class JobPage : Page
     {
+        private bool IsToday =true;
         GraphBLL graph;
         public JobPage()
         {
@@ -36,10 +37,31 @@ namespace App1
         private void BtnRefresh_Click(object sender, RoutedEventArgs e)
         {
             graph = new GraphBLL();
-            this.ProductsGrid.ItemsSource = graph.GetEmployeeGraph();
+            if (IsToday)
+            {
+                this.ProductsGrid.ItemsSource = graph.GetEmployeeGraph();
+            }
+            else
+            {
+                this.ProductsGrid.ItemsSource = graph.GetEmployeeGraphMounght();
+            }
         }
 
-     
-      
+        private void TimelineComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string TimeLine = e.AddedItems[0].ToString();
+
+            switch (TimeLine)
+            {
+                case "This Month":
+                    this.IsToday = false;
+                    this.ProductsGrid.ItemsSource = graph.GetEmployeeGraphMounght();
+                    break;
+                case "Today":
+                    this.IsToday = true;
+                    this.ProductsGrid.ItemsSource = graph.GetEmployeeGraph();
+                    break;
+            }
+        }
     }
 }

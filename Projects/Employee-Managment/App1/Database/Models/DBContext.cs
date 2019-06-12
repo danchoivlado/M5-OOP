@@ -17,6 +17,7 @@ namespace App1.Models
 
         public virtual DbSet<Duties> Duties { get; set; }
         public virtual DbSet<Employeegraph> Employeegraph { get; set; }
+        public virtual DbSet<Employeegraphmounght> Employeegraphmounght { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Lastscaned> Lastscaned { get; set; }
         public virtual DbSet<Towns> Towns { get; set; }
@@ -76,6 +77,42 @@ namespace App1.Models
                     .HasForeignKey(d => d.EmployeeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("employeegraph_ibfk_1");
+            });
+
+            modelBuilder.Entity<Employeegraphmounght>(entity =>
+            {
+                entity.ToTable("employeegraphmounght", "employeemanagement");
+
+                entity.HasIndex(e => e.EmployeeId)
+                    .HasName("Employee_id");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.CameWork)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CurrentDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EmployeeId)
+                    .HasColumnName("Employee_id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.HoursWorked)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LeaveWork)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.Employeegraphmounght)
+                    .HasForeignKey(d => d.EmployeeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("employeegraphmounght_ibfk_1");
             });
 
             modelBuilder.Entity<Employees>(entity =>

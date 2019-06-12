@@ -85,12 +85,6 @@ namespace App1
                     cmd = cmd.Substring(0, cmd.Length - 1);
                 }
                 ;
-                if (cmd.Length > 0)
-                {
-                    Debug.WriteLine(cmd);
-                    //TODO Method 
-
-                }
                 if (BGWorker == false)
                 {
 
@@ -101,11 +95,12 @@ namespace App1
                     EmpContex.Lastscaned.Add(CardNumber);
                     EmpContex.SaveChanges();
                     BGWorker = true;
-                    mySerialPort.WriteLine("3");
+                    mySerialPort.Write("2");
                 }
-                else if (cmd.Length > 3)
+                else if (cmd.Length > 3&&cmd.Substring(cmd.Length-2)!="83")
                 {
                     // string trimed = cmd.Substring(0,cmd.Length);
+
                     var CurEmp = this.EmpContex.Employees.FirstOrDefault(x => x.ScannerCardNumber == cmd);
                     if (CurEmp == null)
                     {
@@ -113,7 +108,9 @@ namespace App1
                     }
                     else
                     {
-                        mySerialPort.Write("1");
+                        //mySerialPort.Write("1");
+                     //   Thread.Sleep(1500);
+                        mySerialPort.Write($"{CurEmp.FirstName} {CurEmp.LastName}");
                         Employeegraph GraphEmployee = this.EmpContex.Employeegraph.FirstOrDefault(x => x.EmployeeId == CurEmp.Id);
                         if (GraphEmployee == null)
                         {
@@ -164,11 +161,23 @@ namespace App1
 
         private void CheckDate()
         {
-            if (this.EmpContex.Employeegraph.First().CurrentDate.Split(new string[] { ":" }, StringSplitOptions.None).First() != $"{DateTime.Now.Day}")
+            if (EmpContex.Employeegraph.Count() > 0)
             {
-                foreach (var emp in this.EmpContex.Employeegraph)
+                if (this.EmpContex.Employeegraph.First().CurrentDate.Split(new string[] { ":" }, StringSplitOptions.None).First() != $"{DateTime.Now.Day}")
                 {
-                    this.EmpContex.Employeegraph.Remove(emp);
+                    foreach (var emp in this.EmpContex.Employeegraph)
+                    {
+                        if (emp.LeaveWork != "Didnt Leave")
+                        {
+                            Employeegraphmounght CurEmp = new Employeegraphmounght();
+                            CurEmp.EmployeeId = emp.EmployeeId;
+                            CurEmp.CurrentDate = emp.CurrentDate;
+                            CurEmp.HoursWorked = (DateTime.Parse(emp.LeaveWork).Subtract(DateTime.Parse(emp.CameWork))).ToString().Substring(0,5);
+                            this.EmpContex.Employeegraphmounght.Add(CurEmp);
+                            this.EmpContex.Employeegraph.Remove(emp);
+                        }
+                    }
+            this.EmpContex.SaveChanges();
                 }
             }
         }

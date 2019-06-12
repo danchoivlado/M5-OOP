@@ -8,6 +8,7 @@ namespace App1.Models
         public Employees()
         {
             Employeegraph = new HashSet<Employeegraph>();
+            Employeegraphmounght = new HashSet<Employeegraphmounght>();
         }
 
         public int Id { get; set; }
@@ -23,5 +24,6 @@ namespace App1.Models
         public virtual Duties Duty { get; set; }
         public virtual Towns Town { get; set; }
         public virtual ICollection<Employeegraph> Employeegraph { get; set; }
+        public virtual ICollection<Employeegraphmounght> Employeegraphmounght { get; set; }
     }
 }

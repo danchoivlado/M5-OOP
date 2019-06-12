@@ -33,7 +33,7 @@ namespace App1.BusinessLogic
                 this.Database.Towns.Add(CurTown);
             }
 
-            if (CurDuty==null)
+            if (CurDuty == null)
             {
                 CurDuty = new Duties()
                 {
@@ -60,31 +60,55 @@ namespace App1.BusinessLogic
             return NewEmployee;
         }
 
-       
 
-       
+
+
 
         public void EditEmployee(EmployeeInfo employee)
         {
             var CurEmployee = Database.Employees.First(x => x.Egn == employee.EGN);
-            Employeegraph CurEmplGraph = Database.Employeegraph.First(x => x.EmployeeId == CurEmployee.Id);
-            this.Database.Employeegraph.Remove(CurEmplGraph);
+            Employeegraph CurEmplGraph = Database.Employeegraph.FirstOrDefault(x => x.EmployeeId == CurEmployee.Id);
+            Employeegraphmounght CurEmpMongh = Database.Employeegraphmounght.FirstOrDefault(x => x.EmployeeId == CurEmployee.Id);
+            if (CurEmplGraph != null)
+                this.Database.Employeegraph.Remove(CurEmplGraph);
+
+            if (CurEmpMongh != null)
+                this.Database.Employeegraphmounght.Remove(CurEmpMongh);
+
             this.Database.Employees.Remove(CurEmployee);
             this.Database.SaveChanges();
-            
 
-             var NewEmp = CreateEmployee(employee.FirstName, employee.SecondName, employee.LastName, employee.EGN,
-                employee.Duty, employee.Town, employee.TelephoneNumber, employee.ScannerCardNumber);
-            CurEmplGraph.EmployeeId = NewEmp.Id;
-            this.Database.Employeegraph.Add(CurEmplGraph);
-            this.Database.SaveChanges();
+
+            var NewEmp = CreateEmployee(employee.FirstName, employee.SecondName, employee.LastName, employee.EGN,
+               employee.Duty, employee.Town, employee.TelephoneNumber, employee.ScannerCardNumber);
+            if (CurEmplGraph != null)
+            {
+                CurEmplGraph.EmployeeId = NewEmp.Id;
+                this.Database.Employeegraph.Add(CurEmplGraph);
+                this.Database.SaveChanges();
+            }
+            if (CurEmpMongh != null)
+            {
+                CurEmpMongh.EmployeeId = NewEmp.Id;
+                this.Database.Employeegraphmounght.Add(CurEmpMongh);
+                this.Database.SaveChanges();
+            }
         }
 
         public void DeleteEmployee(EmployeeInfo employee)
         {
             var CurEmployee = Database.Employees.First(x => x.Egn == employee.EGN);
-            Employeegraph CurEmplGraph = Database.Employeegraph.First(x => x.EmployeeId == CurEmployee.Id);
-            this.Database.Employeegraph.Remove(CurEmplGraph);
+            Employeegraph CurEmplGraph = Database.Employeegraph.FirstOrDefault(x => x.EmployeeId == CurEmployee.Id);
+            Employeegraphmounght CurEmpMongh = Database.Employeegraphmounght.FirstOrDefault(x => x.EmployeeId == CurEmployee.Id);
+
+            if (CurEmplGraph != null)
+                this.Database.Employeegraph.Remove(CurEmplGraph);
+
+            if (CurEmpMongh != null)
+            {
+                this.Database.Employeegraphmounght.Remove(CurEmpMongh);
+            }
+
             this.Database.Employees.Remove(CurEmployee);
             this.Database.SaveChanges();
         }

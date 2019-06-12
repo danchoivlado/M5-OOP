@@ -99,6 +99,13 @@
     <Compile Include="BusinessLogic\EmployeeGraphInfo.cs" />
     <Compile Include="BusinessLogic\EmployeeInfo.cs" />
     <Compile Include="BusinessLogic\GraphBLL.cs" />
+    <Compile Include="Database\Models\Duties.cs" />
+    <Compile Include="Database\Models\Employeegraph.cs" />
+    <Compile Include="Database\Models\Employeegraphmounght.cs" />
+    <Compile Include="Database\Models\DBContext.cs" />
+    <Compile Include="Database\Models\Employees.cs" />
+    <Compile Include="Database\Models\Lastscaned.cs" />
+    <Compile Include="Database\Models\Towns.cs" />
     <Compile Include="EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
@@ -117,12 +124,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Database\Models\Duties.cs" />
-    <Compile Include="Database\Models\Employeegraph.cs" />
-    <Compile Include="Database\Models\DBContext.cs" />
-    <Compile Include="Database\Models\Employees.cs" />
-    <Compile Include="Database\Models\Lastscaned.cs" />
-    <Compile Include="Database\Models\Towns.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
