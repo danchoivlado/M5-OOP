@@ -16,18 +16,26 @@ namespace App1.BusinessLogic
             this.Database = new DBContext();
         }
 
+        /// <summary>
+        /// Gets The Last Code from Database and Removes it
+        /// </summary>
+        /// <returns>Code of Card</returns>
         public string GetLast()
         {
-            var LastScaned = this.Database.Lastscaned.LastOrDefault();
-            if (LastScaned == null)
+            var LastScanedEmployee = this.Database.Lastscaned.LastOrDefault();
+            if (LastScanedEmployee == null)
             {
                 return "";
             }
-            this.Database.Lastscaned.Remove(LastScaned);
+            this.Database.Lastscaned.Remove(LastScanedEmployee);
             this.Database.SaveChanges();
-            return LastScaned.ScannerCardNumber;
+            return LastScanedEmployee.ScannerCardNumber;
         }
 
+        /// <summary>
+        /// Gets All The Employees
+        /// </summary>
+        /// <returns>List<EmployeeInfo></returns>
         public List<EmployeeInfo> GetAllEmployeeInfo()
         {
             var EmployeeList = new List<EmployeeInfo>();
@@ -52,6 +60,11 @@ namespace App1.BusinessLogic
             return EmployeeList.OrderBy(x => x.FirstName).ToList();
         }
 
+        /// <summary>
+        /// Gets ALl the Employees Came to Work Today
+        /// And Calculate How Many Hours they Worked 
+        /// </summary>
+        /// <returns>List<EmployeeGraphInfo></returns>
         public List<EmployeeGraphInfo> GetEmployeeGraph()
         {
             var EmployeeList = new List<EmployeeGraphInfo>();
@@ -68,10 +81,10 @@ namespace App1.BusinessLogic
                 CurGraph.PhoneNumber = CurEmployee.TelephoneNumber;
                 CurGraph.CameWork = emp.CameWork;
                 CurGraph.LeavedWork = emp.LeaveWork;
+                //If Employee is NOT the Building
                 if (emp.LeaveWork != "Didnt Leave")
                 {
-                    //TimeSpan duration = DateTime.Parse(DateTime.Now.TimeOfDay.ToString()).Subtract(DateTime.Parse(emp.CameWork));
-                    //CurGraph.HoursWorked = duration.ToString().Substring(0, 5);
+                    //Calculates the Hours Worked
                     TimeSpan duration = DateTime.Parse(emp.LeaveWork).Subtract(DateTime.Parse(emp.CameWork));
                     CurGraph.HoursWorked = duration.ToString().Substring(0, 5);
                 }
@@ -84,47 +97,47 @@ namespace App1.BusinessLogic
             }
             return EmployeeList;
         }
+
+        /// <summary>
+        /// Gets All Employees Came this Monght  
+        /// And Calculates how many hours they worked this Monght
+        /// </summary>
+        /// <returns>List<EmployeeGraphInfo></returns>
         public List<EmployeeGraphInfo> GetEmployeeGraphMounght()
         {
             var EmployeeList = new List<EmployeeGraphInfo>();
 
-            foreach (var emp in Database.Employeegraphmounght)//.
-              //  Where(x => x.CurrentDate.Split(new string[] { ":" }, StringSplitOptions.None).Last() == $"{DateTime.Now.Month}"))
+            foreach (var emp in Database.Employeegraphmounght)
             {
+                //Checks if the Employee Monght is the SAME as this Monght
                 if (emp.CurrentDate.Split(new string[] { ":" }, StringSplitOptions.None).Last() == $"{DateTime.Now.Month}")
                 {
-
-
                     var CurEmployee = this.Database.Employees.First(x => x.Id == emp.EmployeeId);
-                    string CurDuty = this.Database.Duties.First(x => x.Id == CurEmployee.DutyId).Duty;
+                    string Duty = this.Database.Duties.First(x => x.Id == CurEmployee.DutyId).Duty;
 
+                    //Create EmployeeGraphInfo object
                     EmployeeGraphInfo CurGraph = new EmployeeGraphInfo();
                     CurGraph.FirstName = CurEmployee.FirstName;
                     CurGraph.LastName = CurEmployee.LastName;
-                    CurGraph.Duty = CurDuty;
+                    CurGraph.Duty = Duty;
                     CurGraph.PhoneNumber = CurEmployee.TelephoneNumber;
                     CurGraph.CameWork = "Month";
                     CurGraph.LeavedWork = "Timeline";
 
-                    
-                   
-
-                    var HaveEmp = EmployeeList.FirstOrDefault(x => x.PhoneNumber == CurEmployee.TelephoneNumber);
-                    if (HaveEmp != null)
+                    //Gets from Database Employee
+                    var AlreadyHaveEmp = EmployeeList.FirstOrDefault(x => x.PhoneNumber == CurEmployee.TelephoneNumber);
+                    if (AlreadyHaveEmp != null)
                     {
-                        EmployeeList.Remove(HaveEmp);
+                        EmployeeList.Remove(AlreadyHaveEmp);
 
                         double hours = double.Parse(emp.HoursWorked.Split(new string[] { ":" }, StringSplitOptions.None).First());
                         double minutes = double.Parse(emp.HoursWorked.Split(new string[] { ":" }, StringSplitOptions.None).Last());
 
 
-                        var FirstHour =double.Parse(HaveEmp.HoursWorked.Split(new string[] { ":" }, StringSplitOptions.None).First())+hours;
-                        var FirstMinute = (double.Parse(HaveEmp.HoursWorked.Split(new string[] { ":" }, StringSplitOptions.None).Last()) + minutes)/60;
+                        var FirstHour =double.Parse(AlreadyHaveEmp.HoursWorked.Split(new string[] { ":" }, StringSplitOptions.None).First())+hours;
+                        var FirstMinute = (double.Parse(AlreadyHaveEmp.HoursWorked.Split(new string[] { ":" }, StringSplitOptions.None).Last()) + minutes)/60;
 
-                        CurGraph.HoursWorked = $"{FirstHour+FirstMinute:f2}";
-
-                        
-
+                        CurGraph.HoursWorked = $"{Math.Floor(FirstHour+FirstMinute)}";
                     }
                     else
                     {
@@ -133,6 +146,11 @@ namespace App1.BusinessLogic
 
 
                     EmployeeList.Add(CurGraph);
+                }
+                else
+                {
+                    //Removes Outdated Employees :(
+                    this.Database.Employeegraphmounght.Remove(emp);
                 }
             }
             return EmployeeList;

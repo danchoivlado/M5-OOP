@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core.Preview;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,9 +27,11 @@ namespace App1
         {
             this.InitializeComponent();
             MainFrame.Navigate(typeof(HomePage));
+            
         }
 
-       
+
+
 
         private void Menu_button_Click(object sender, RoutedEventArgs e)
         {
@@ -62,5 +65,7 @@ namespace App1
                 PageName.Text = "Work Graph Page";
             }
         }
+
+      
     }
 }

@@ -17,10 +17,22 @@ namespace App1.BusinessLogic
             this.Database = new DBContext();
         }
 
-
+        /// <summary>
+        /// Create Employee and ADDS it to DATABASE
+        /// </summary>
+        /// <param name="FirstName"></param>
+        /// <param name="SecondName"></param>
+        /// <param name="LastName"></param>
+        /// <param name="EGN"></param>
+        /// <param name="Duty"></param>
+        /// <param name="Town"></param>
+        /// <param name="TelephoneNumber"></param>
+        /// <param name="ScannerCardNumber"></param>
+        /// <returns></returns>
         public Employees CreateEmployee(string FirstName, string SecondName, string LastName, string EGN, string Duty,
             string Town, string TelephoneNumber, string ScannerCardNumber)
         {
+            //Check if there is already town & Duty in the database
             var CurTown = this.Database.Towns.FirstOrDefault(x => x.Name == Town);
             var CurDuty = this.Database.Duties.FirstOrDefault(x => x.Duty == Duty);
 
@@ -66,47 +78,78 @@ namespace App1.BusinessLogic
 
         public void EditEmployee(EmployeeInfo employee)
         {
-            var CurEmployee = Database.Employees.First(x => x.Egn == employee.EGN);
-            Employeegraph CurEmplGraph = Database.Employeegraph.FirstOrDefault(x => x.EmployeeId == CurEmployee.Id);
-            Employeegraphmounght CurEmpMongh = Database.Employeegraphmounght.FirstOrDefault(x => x.EmployeeId == CurEmployee.Id);
-            if (CurEmplGraph != null)
-                this.Database.Employeegraph.Remove(CurEmplGraph);
+            //Gets the selected Employee
+            var SelectedEmployee = Database.Employees.First(x => x.Egn == employee.EGN);
+            //Get the employee from Employeegraph
+            Employeegraph EmployeeFromToday = Database.Employeegraph.FirstOrDefault(x => x.EmployeeId == SelectedEmployee.Id);
+            //Used to Store all the Employees camo from this monght in Employeegraphmounght
+            List<Employeegraphmounght> AllEmployeesFromEmployeeGraph = new List<Employeegraphmounght>();
 
-            if (CurEmpMongh != null)
-                this.Database.Employeegraphmounght.Remove(CurEmpMongh);
+            if (EmployeeFromToday != null)
+                this.Database.Employeegraph.Remove(EmployeeFromToday);
 
-            this.Database.Employees.Remove(CurEmployee);
+            //Check if there is any employee in the database
+            if (this.Database.Employeegraphmounght.Count()!=0)
+            {
+                foreach (var emp in this.Database.Employeegraphmounght.Where(x=>x.EmployeeId==SelectedEmployee.Id))
+                {
+                    //Removes and from database and add it to the list
+                    AllEmployeesFromEmployeeGraph.Add(emp);
+                    this.Database.Employeegraphmounght.Remove(emp);
+                }
+            }
+
+            this.Database.Employees.Remove(SelectedEmployee);
             this.Database.SaveChanges();
 
 
             var NewEmp = CreateEmployee(employee.FirstName, employee.SecondName, employee.LastName, employee.EGN,
                employee.Duty, employee.Town, employee.TelephoneNumber, employee.ScannerCardNumber);
-            if (CurEmplGraph != null)
+
+            //Changes All the Employee from Employeegraph TABLE
+            if (EmployeeFromToday != null)
             {
-                CurEmplGraph.EmployeeId = NewEmp.Id;
-                this.Database.Employeegraph.Add(CurEmplGraph);
+                EmployeeFromToday.EmployeeId = NewEmp.Id;
+                this.Database.Employeegraph.Add(EmployeeFromToday);
                 this.Database.SaveChanges();
             }
-            if (CurEmpMongh != null)
+            //Changes All the Employee from Employeegraphmounght TABLE 
+            if (this.Database.Employeegraphmounght.Count() != 0)
             {
-                CurEmpMongh.EmployeeId = NewEmp.Id;
-                this.Database.Employeegraphmounght.Add(CurEmpMongh);
-                this.Database.SaveChanges();
+                foreach (var emp in AllEmployeesFromEmployeeGraph)
+                {
+                    emp.EmployeeId = NewEmp.Id;
+                    this.Database.Employeegraphmounght.Add(emp);
+                }
+                    this.Database.SaveChanges();
+                
             }
         }
 
+        /// <summary>
+        /// Deletes Employee from DataBase
+        /// </summary>
+        /// <param name="employee">Selected Employee</param>
         public void DeleteEmployee(EmployeeInfo employee)
         {
+            //Gets the selected Employee
             var CurEmployee = Database.Employees.First(x => x.Egn == employee.EGN);
+            //Get the employee from Employeegraph
             Employeegraph CurEmplGraph = Database.Employeegraph.FirstOrDefault(x => x.EmployeeId == CurEmployee.Id);
-            Employeegraphmounght CurEmpMongh = Database.Employeegraphmounght.FirstOrDefault(x => x.EmployeeId == CurEmployee.Id);
+            //Used to Store all the Employees camo from this monght in Employeegraphmounght
+            List<Employeegraphmounght> CurEmpsMongh = new List<Employeegraphmounght>();
 
+            //Remove Employee from Employeegraph
             if (CurEmplGraph != null)
                 this.Database.Employeegraph.Remove(CurEmplGraph);
 
-            if (CurEmpMongh != null)
+            //Remove Employee from Employeegraphmounght
+            if (this.Database.Employeegraphmounght.Count() != 0)
             {
-                this.Database.Employeegraphmounght.Remove(CurEmpMongh);
+                foreach (var emp in this.Database.Employeegraphmounght.Where(x => x.EmployeeId == CurEmployee.Id))
+                {
+                    this.Database.Employeegraphmounght.Remove(emp);
+                }
             }
 
             this.Database.Employees.Remove(CurEmployee);

@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="917.5">
+    
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="917.5" >
 
     <StackPanel Padding="5" >
 <StackPanel Orientation="Vertical">
@@ -50,7 +51,7 @@
                 </ListBox>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame Name="MainFrame" Margin="0,0,-1286,0"/>
+                <Frame Name="MainFrame" Margin="0,0,-1286,0" />
             </SplitView.Content>
         </SplitView>
     </StackPanel>
