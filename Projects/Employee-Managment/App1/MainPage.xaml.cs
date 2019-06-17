@@ -23,14 +23,12 @@ namespace App1
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static bool Locked = false;
         public MainPage()
         {
             this.InitializeComponent();
-            MainFrame.Navigate(typeof(HomePage));
-            
+            MainFrame.Navigate(typeof(LoginPage));
         }
-
-
 
 
         private void Menu_button_Click(object sender, RoutedEventArgs e)
@@ -40,32 +38,42 @@ namespace App1
 
         private void PagesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (HomePageItem.IsSelected)
+            if (HomePageItem.IsSelected && Locked == true)
             {
                 MainFrame.Navigate(typeof(HomePage));
                 PageName.Text = "Home Page";
                 PageName.TextAlignment = TextAlignment.Center;
             }
 
-            else if (LookupPageItem.IsSelected)
+            else if (LookupPageItem.IsSelected && Locked == true)
             {
                 MainFrame.Navigate(typeof(EmployeeInfoPage));
                 PageName.Text = "Database Of All EMployees";
             }
 
-            else if (CreatePageItem.IsSelected)
+            else if (CreatePageItem.IsSelected && Locked == true)
             {
                 MainFrame.Navigate(typeof(CreatePage));
                 PageName.Text = "Create New Employee";
             }
 
-            else if (StatsPageItem.IsSelected)
+            else if (StatsPageItem.IsSelected && Locked == true)
             {
                 MainFrame.Navigate(typeof(JobPage));
                 PageName.Text = "Work Graph Page";
             }
+
+            else if (LockAplicationItem.IsSelected && Locked == true)
+            {
+                MainFrame.Navigate(typeof(LoginPage));
+                Locked = false;
+            }
+
         }
 
-      
+        public static void UnlockMenu()
+        {
+            Locked = true;
+        }
     }
 }

@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="App1.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+     Background="Black">
+
+    <StackPanel  Padding="50">
+        <TextBlock Text="Login Page"  FontSize="60" Padding="10" HorizontalAlignment="Center" FontWeight="Bold" />
+
+        <StackPanel Orientation="Horizontal" Margin="150 25 0 0">
+            <TextBlock Text="User Name" FontSize="20" Width="150" />
+            <TextBox Name="UserNameTxtBox" FontSize="20" Width="300" />
+
+            <TextBlock Text="Password" FontSize="20" Width="150" Margin="100, 0, 0, 0" />
+            <TextBox Name="PasswordTxtBox" FontSize="20" Width="300" />
+        </StackPanel>
+        
+       
+        <StackPanel Margin="90,100,150,0" Spacing="20">
+        <Button Content="Login" Name="Login" HorizontalAlignment="Center" FontSize="20"  Width="250" Height="45" Click="Login_Click"/>
+            <Button Content="Register" Name="RegisterBut" HorizontalAlignment="Center" FontSize="20"  Width="200" Height="40" Click="RegisterBut_Click"/>
+            <TextBlock Name="UsersLabel" Text="" Foreground="Red" HorizontalAlignment="Center" FontSize="21"  />
+            <TextBlock Name="InvalidTxtBox" Text="Invalid Fields" Foreground="Red" HorizontalAlignment="Center" FontSize="21" Visibility="Collapsed" />
+        </StackPanel>
+    </StackPanel>
+</Page>

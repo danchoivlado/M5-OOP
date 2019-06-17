@@ -15,6 +15,7 @@ namespace App1.Models
         {
         }
 
+        public virtual DbSet<Admins> Admins { get; set; }
         public virtual DbSet<Duties> Duties { get; set; }
         public virtual DbSet<Employeegraph> Employeegraph { get; set; }
         public virtual DbSet<Employeegraphmounght> Employeegraphmounght { get; set; }
@@ -34,6 +35,28 @@ namespace App1.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+
+            modelBuilder.Entity<Admins>(entity =>
+            {
+                entity.ToTable("admins", "employeemanagement");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ScannerCardNumber)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<Duties>(entity =>
             {

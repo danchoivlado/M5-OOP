@@ -83,8 +83,7 @@ namespace App1
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            employeeBLL.DeleteEmployee(GetFieldInfo());
-            this.Frame.Navigate(typeof(EmployeeInfoPage));
+            DisplayDeleteFileDialog();
         }
 
         private void BtnScan_Click(object sender, RoutedEventArgs e)
@@ -110,6 +109,32 @@ namespace App1
                 return false;
             }
             return true;
+        }
+
+        private async void DisplayDeleteFileDialog()
+        {
+            ContentDialog deleteFileDialog = new ContentDialog
+            {
+                Title = $"Delete employee",
+                Content = "Delete this employee FOREVER?",
+                PrimaryButtonText = "Delete",
+                CloseButtonText = "Cancel"
+            };
+
+            ContentDialogResult result = await deleteFileDialog.ShowAsync();
+
+            // Delete the file if the user clicked the primary button.
+            /// Otherwise, do nothing.
+            if (result == ContentDialogResult.Primary)
+            {
+                employeeBLL.DeleteEmployee(GetFieldInfo());
+                this.Frame.Navigate(typeof(EmployeeInfoPage));
+            }
+            else
+            {
+                // The user clicked the CLoseButton, pressed ESC, Gamepad B, or the system back button.
+                // Do nothing.
+            }
         }
     }
 }

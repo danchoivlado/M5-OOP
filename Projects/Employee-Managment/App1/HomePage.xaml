@@ -10,9 +10,8 @@
 
 
 
-    <StackPanel>
+    <StackPanel >
         <Image x:Name="img1" Height="1000" Source="Assets/hey2.jpg" Margin="0,0,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-
     </StackPanel>
 
 </Page>

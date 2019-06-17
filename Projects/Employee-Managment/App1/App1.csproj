@@ -95,10 +95,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BusinessLogic\EmployeeBLL.cs" />
-    <Compile Include="BusinessLogic\EmployeeGraphInfo.cs" />
-    <Compile Include="BusinessLogic\EmployeeInfo.cs" />
-    <Compile Include="BusinessLogic\GraphBLL.cs" />
+    <Compile Include="BusinessLogic\LoginBLL.cs" />
+    <Compile Include="Database\Models\Admins.cs" />
     <Compile Include="Database\Models\Duties.cs" />
     <Compile Include="Database\Models\Employeegraph.cs" />
     <Compile Include="Database\Models\Employeegraphmounght.cs" />
@@ -106,6 +104,16 @@
     <Compile Include="Database\Models\Employees.cs" />
     <Compile Include="Database\Models\Lastscaned.cs" />
     <Compile Include="Database\Models\Towns.cs" />
+    <Compile Include="RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessLogic\EmployeeBLL.cs" />
+    <Compile Include="BusinessLogic\EmployeeGraphInfo.cs" />
+    <Compile Include="BusinessLogic\EmployeeInfo.cs" />
+    <Compile Include="BusinessLogic\GraphBLL.cs" />
     <Compile Include="EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +156,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="RegisterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
