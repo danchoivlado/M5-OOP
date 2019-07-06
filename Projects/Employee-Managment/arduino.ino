@@ -3,25 +3,28 @@
 #include <Wire.h>
 #include <Servo.h>
 #include <Servo.h>
-Servo ms;
+Servo ServoLock;
 const int LedGreen = 8;
 const int LedRed = 7;
 const int LedYellow = 6;
 const int Zoomer = 12;
+const int buttonPin = 3;
+bool buttonState ;  
 SoftwareSerial RF(10, 11); // RX, TX
-int code;
-bool vleze = false;
+int cardNumber;
+bool wasInWhile = false;
 String brak;
-String TurnYellowLed;
+String SerialCommand;
+
 LiquidCrystal_PCF8574 lcd(0x27); // set the LCD address to 0x27 for a 16 chars and 2 line display
 
 
 void setup() {
   Serial.begin(9600);
   RF.begin(9600);
-  ms.attach(4); 
+  ServoLock.attach(4); 
   digitalWrite(Zoomer,LOW);
- 
+  pinMode(buttonPin, INPUT_PULLUP);
 
   InitializeLEDs();
   InitializeLCD();
@@ -32,31 +35,47 @@ void loop() {
   //Waits for input from the program
   if(Serial.available()){
     //Reads the input from the program
-    TurnYellowLed = Serial.readString(); 
-    //if programs is now started
-    if(TurnYellowLed=="CommunicationON"){
+    SerialCommand = Serial.readString(); 
+    //if prograServoLock is now started
+    if(SerialCommand=="EmergencyAlarmOn"){
+      //Displays on LCD "Emergency Open"
+      LCDEmergencyOpen();
+      ServoOpen();
+      //Power onn both LED
+      EmergencyLEDOn();
+    }
+       //When you cencel the Emergency 
+    if(SerialCommand=="EmergencyAlarmOff"){
+      ServoClose();
+      LcdClearWithoutDelay();
+      EmergencyLEDOff();
+    }
+    
+    if(SerialCommand=="CommunicationON"){
       //Turns on Communication LED
       digitalWrite(LedYellow,HIGH);
     }
     //if program is closing
-    if(TurnYellowLed=="CommunicationOFF"){
+    if(SerialCommand=="CommunicationOFF"){
       //Turns off Communication LED
       digitalWrite(LedYellow,LOW);
     }
   }
-  //Reads the code from the RF Reader 
+
+  
+  //Reads the cardNumber from the RF Reader  
  while(RF.available()>0){
-  code =RF.read();
-  //Sends the readed code from the card to Serial Port
-  Serial.println(code);
-  vleze = true;
+  cardNumber =RF.read();
+  //Sends the readed cardNumber from the card to Serial Port
+  Serial.println(cardNumber);
+  wasInWhile = true;
  }
- 
- if(vleze){
-      vleze = false;
+  
+ if(wasInWhile){
+      wasInWhile = false;
       //Reads the input from the program
       brak = Serial.readString(); 
-      
+      //Checks for false Scanned text
       if(brak!="0"&&brak!="ScanedCardForRegistration"&&brak !="CommunicationON"&&brak!="CommunicationOFF"&&brak!=""){
         LEDPassLCD(brak);
         Pass();
@@ -65,6 +84,8 @@ void loop() {
         NotPass();
       } 
  }
+ //Checks for pressed "Manual Opne" button
+ CheckBUT();
 }
 
 void Pass(){
@@ -103,19 +124,51 @@ void LEDPass(){
       digitalWrite(LedGreen,LOW);    
       
 }
+void EmergencyLEDOn(){
+   digitalWrite(LedGreen,HIGH);
+   digitalWrite(LedRed,HIGH);
+}
 
+void EmergencyLEDOff(){
+   digitalWrite(LedGreen,LOW);
+   digitalWrite(LedRed,LOW);
+}
 void ServoOpen(){
-  ms.write(50);
+  ServoLock.write(50);
   delay(653);
-  ms.write(90);
+  ServoLock.write(90);
 }
 
 void ServoClose(){
-  ms.write(150);
+  ServoLock.write(150);
   delay(653);
-ms.write(90);
+ServoLock.write(90);
 }
 
+void CheckBUT(){
+  //If button is pressed
+  if(digitalRead(buttonPin)==LOW){
+    //If button was pressed before
+ if (buttonState == LOW) {
+  digitalWrite(LedGreen,HIGH);
+ // digitalWrite(Zoomer,HIGH);
+    LCDOpenedByManual();
+    ServoOpen();
+    
+  } 
+  else {
+    // turn LED off:
+    digitalWrite(LedGreen,LOW);
+ //   digitalWrite(Zoomer,LOW);
+    LcdClearWithoutDelay();
+    ServoClose();
+     
+  }
+  //Change the button state to opasite
+  buttonState=!buttonState;
+  delay(200);
+}
+}
 void LEDNotPass(){
   for(int a=0;a<2;a++)
   { 
@@ -133,6 +186,26 @@ void LEDNotPass(){
   }
 }
 
+void LCDOpenedByManual(){
+  lcd.clear();
+  lcd.setCursor(0, 0);
+   lcd.print("Wait To Pass");
+   lcd.setCursor(0, 1);
+   lcd.print("Opened By Manual");  
+}
+
+void LCDEmergencyOpen(){
+  lcd.clear();
+  lcd.setCursor(0, 0);
+   lcd.print("Wait To Pass");
+   lcd.setCursor(0, 1);
+   lcd.print("Emergency Open");
+    lcd.setCursor(0, 2);
+   lcd.print("====>>>"); 
+   lcd.setCursor(0, 3); 
+    lcd.print("20m"); 
+}
+
 void LEDPassLCD(String EmpName){
   lcd.clear();
   lcd.setCursor(0, 0);
@@ -140,6 +213,7 @@ void LEDPassLCD(String EmpName){
    lcd.setCursor(0, 1);
    lcd.print("Hello");
    lcd.setCursor(0, 2);
+   //Prints the name of scanned Eployee
    lcd.print(EmpName);
    lcd.setCursor(5, 3);
    lcd.print("Welcome");
@@ -154,8 +228,15 @@ void LCDNotPass(){
    lcd.setCursor(0, 2);
    lcd.print(":(:(:(:(:(:(:(:(:(");
 }
+
+void LcdClearWithoutDelay(){
+  lcd.clear();
+  lcd.clear();
+  lcd.setCursor(0, 0);
+   lcd.print("Scanning...");
+}
 void LcdClear(){
-  delay(5000);
+  delay(3000);
   lcd.clear();
   lcd.clear();
   lcd.setCursor(0, 0);
