@@ -49,7 +49,7 @@ namespace App1
             //Gets the password from TextBox
             var Password = this.PasswordTxtBox.Text;
             //If there is admin
-            if(this.LoginBLL.CheckForValidFields(UserName, Password))
+            if (this.LoginBLL.CheckForValidFields(UserName, Password))
             {
                 //Unlock the app
                 MainPage.UnlockMenu();

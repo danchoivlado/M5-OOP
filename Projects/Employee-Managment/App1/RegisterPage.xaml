@@ -18,7 +18,7 @@
             <TextBlock Text="Password" FontSize="20" Width="150" Margin="100, 0, 0, 0" />
             <TextBox Name="PasswordTxtBox" FontSize="20" Width="300" />
         </StackPanel>
-        
+
         <StackPanel Orientation="Horizontal" Margin="180,0,0,0">
             <TextBlock Text="Card Number" FontSize="20" Width="150" />
             <TextBox Name="CardNumberTxtBox" FontSize="20" Width="300" />

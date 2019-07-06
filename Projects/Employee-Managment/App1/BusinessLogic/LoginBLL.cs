@@ -60,9 +60,7 @@ namespace App1.BusinessLogic
                 Password = Password,
                 ScannerCardNumber = "User"
             };
-            //Adds to DataBase
             this.Database.Admins.Add(admins);
-            //Saves changes
             this.Database.SaveChanges();
         }
 
@@ -80,13 +78,10 @@ namespace App1.BusinessLogic
         /// </summary>
         public void DeleteAllAdminUsers()
         {
-            //foreach all the admins
             foreach (var Admins in this.Database.Admins.Where(x=>x.Id!=1))
             {
-                //removes fromm DataBase
                 this.Database.Admins.Remove(Admins);
             }
-            //Save changes
             this.Database.SaveChanges();
         }
     }

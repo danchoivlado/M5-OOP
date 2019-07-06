@@ -57,14 +57,14 @@ namespace App1
             if (HomePageItem.IsSelected && Locked == true)
             {
                 MainFrame.Navigate(typeof(HomePage));
-               // PageName.Text = "Home Page";
+                // PageName.Text = "Home Page";
                 PageName.TextAlignment = TextAlignment.Center;
             }
 
             else if (LookupPageItem.IsSelected && Locked == true)
             {
                 MainFrame.Navigate(typeof(EmployeeInfoPage));
-               // PageName.Text = "Database Of All EMployees";
+                // PageName.Text = "Database Of All EMployees";
             }
 
             else if (CreatePageItem.IsSelected && Locked == true)
@@ -76,7 +76,7 @@ namespace App1
             else if (StatsPageItem.IsSelected && Locked == true)
             {
                 MainFrame.Navigate(typeof(JobPage));
-               // PageName.Text = "Work Graph Page";
+                // PageName.Text = "Work Graph Page";
             }
             //When program is started
             else if (LockAplicationItem.IsSelected && Locked == true)

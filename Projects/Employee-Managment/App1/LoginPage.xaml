@@ -14,12 +14,12 @@
         <StackPanel Orientation="Horizontal" Margin="150 25 0 0">
             <TextBlock Text="User Name" FontSize="20" Width="150" />
             <TextBox Name="UserNameTxtBox" FontSize="20" Width="300" />
-           
+
             <TextBlock Text="Password" FontSize="20" Width="150" Margin="100, 0, 0, 0" />
             <TextBox Name="PasswordTxtBox" FontSize="20" Width="300" />
         </StackPanel>
         <StackPanel Margin="90,100,150,0" Spacing="20">
-        <Button Content="Login" Name="Login" HorizontalAlignment="Center" FontSize="20"  Width="250" Height="45" Click="Login_Click"/>
+            <Button Content="Login" Name="Login" HorizontalAlignment="Center" FontSize="20"  Width="250" Height="45" Click="Login_Click"/>
             <Button Content="Register" Name="RegisterBut" HorizontalAlignment="Center" FontSize="20"  Width="200" Height="40" Click="RegisterBut_Click"/>
             <TextBlock Name="UsersLabel" Text="" Foreground="Red" HorizontalAlignment="Center" FontSize="21"  />
             <TextBlock Name="InvalidTxtBox" Text="Invalid Fields" Foreground="Red" HorizontalAlignment="Center" FontSize="21" Visibility="Collapsed" />

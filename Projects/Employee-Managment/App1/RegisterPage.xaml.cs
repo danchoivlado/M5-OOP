@@ -32,11 +32,11 @@ namespace App1
             this.LoginBLL = new LoginBLL();
         }
 
-       /// <summary>
-       /// When someone is about tom scann master card
-       /// </summary>
-       /// <param name="sender"></param>
-       /// <param name="e"></param>
+        /// <summary>
+        /// When someone is about tom scann master card
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnScan_Click(object sender, RoutedEventArgs e)
         {
             App.StopWorker();
@@ -49,7 +49,7 @@ namespace App1
         /// <param name="e"></param>
         private void BtnGet_Click(object sender, RoutedEventArgs e)
         {
-            this.CardNumberTxtBox.Text=$"{GraphBLL.GetLast()}";
+            this.CardNumberTxtBox.Text = $"{GraphBLL.GetLast()}";
             this.BtnGet.Visibility = Visibility.Collapsed;
             App.StartWorker();
         }

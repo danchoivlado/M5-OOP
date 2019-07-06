@@ -11,13 +11,13 @@
 
         <!-- Title -->
         <StackPanel Orientation="Horizontal">
-        <TextBlock Text="Employee Graph Page" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" Margin="460, 0, 70, 20" />
+            <TextBlock Text="Employee Graph Page" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" Margin="460, 0, 70, 20" />
             <ComboBox Header="Timeline" PlaceholderText="Choose Timeline" FontSize="22" Width="230" HorizontalAlignment="Right" Name="TimelineComboBox" SelectionChanged="TimelineComboBox_SelectionChanged">
                 <x:String>Today</x:String>
                 <x:String>This Month</x:String>
             </ComboBox>
         </StackPanel>
-        
+
         <!-- header row -->
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="FirstName"  FontSize="20" Padding="10" Width="200" />
