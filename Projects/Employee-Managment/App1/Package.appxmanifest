@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10" IgnorableNamespaces="uap mp iot">
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" 
+         xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+         xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10"
+          xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap mp rescap">
   <Identity Name="be424cd2-12d5-4506-8acb-ee660f4f753b" Publisher="CN=&quot;C#&quot;" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="be424cd2-12d5-4506-8acb-ee660f4f753b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
@@ -23,7 +28,8 @@
     </Application>
   </Applications>
   <Capabilities>
-     <DeviceCapability Name="serialcommunication">
+    <rescap:Capability Name="confirmAppClose"/>
+    <DeviceCapability Name="serialcommunication">
       <Device Id="any">
         <Function Type="name:serialPort" />
       </Device>

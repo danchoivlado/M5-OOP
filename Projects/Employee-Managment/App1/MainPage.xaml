@@ -1,4 +1,5 @@
-﻿<Page
+﻿
+    <Page
     x:Class="App1.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,11 +9,11 @@
     mc:Ignorable="d"
     
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="917.5" >
-
+    
     <StackPanel Padding="5" >
 <StackPanel Orientation="Vertical">
         <RelativePanel Margin="0,0,1434,0">            
-            <Button Background="#E60039" Name="Menu_button" Height="60" Width="60" FontSize="34" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Click="Menu_button_Click"/>
+            <Button Background="#E60039" Name="Menu_button" Height="60" Width="60" FontSize="34" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Click="Menu_button_Click" Unloaded="Menu_button_Unloaded"/>
                 <TextBlock Name="PageName" Margin="20 0 0 0" Height="60" FontSize="42" FontWeight="Bold" Width="Auto" RelativePanel.RightOf="Menu_button" TextAlignment="Center"/>
         </RelativePanel>
         <SplitView Name="MenuSplitView" 

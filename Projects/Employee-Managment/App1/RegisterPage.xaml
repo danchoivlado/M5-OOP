@@ -11,7 +11,7 @@
     <StackPanel  Padding="50">
         <TextBlock Text="Register Page"  FontSize="60" Padding="10" HorizontalAlignment="Center" FontWeight="Bold" />
 
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+        <StackPanel Orientation="Horizontal" Margin="180,0,0,20">
             <TextBlock Text="User Name" FontSize="20" Width="150" />
             <TextBox Name="UserNameTxtBox" FontSize="20" Width="300" />
 
@@ -19,13 +19,13 @@
             <TextBox Name="PasswordTxtBox" FontSize="20" Width="300" />
         </StackPanel>
         
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="180,0,0,0">
             <TextBlock Text="Card Number" FontSize="20" Width="150" />
             <TextBox Name="CardNumberTxtBox" FontSize="20" Width="300" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="150 0 0 0"  HorizontalAlignment="Left" Width="600" Spacing="50">
-            <Button Name="BtnScan" Content="Scan" FontSize="19" Width="150" Height="35" Click="BtnScan_Click"  />
-            <Button Name="BtnGet" Content="Get Code" FontSize="19" Width="150" Height="35"   Visibility="Collapsed" Click="BtnGet_Click"/>
+        <StackPanel Orientation="Horizontal" Margin="330 0 0 0"  HorizontalAlignment="Left" Width="600" Spacing="50">
+            <Button Name="BtnScan" Content="Scan" FontSize="19" Width="150" Height="35" Click="BtnScan_Click" Margin="0,20,0,0" />
+            <Button Name="BtnGet" Content="Get Code" FontSize="19" Width="150" Height="35" Margin="0,20,0,0"  Visibility="Collapsed" Click="BtnGet_Click"/>
         </StackPanel>
         <StackPanel Margin="90,100,150,0" Spacing="20">
             <Button Content="Register" Name="Register" HorizontalAlignment="Center" FontSize="20"  Width="250" Height="40" Click="Register_Click"/>

@@ -32,13 +32,21 @@ namespace App1
             this.LoginBLL = new LoginBLL();
         }
 
-       
+       /// <summary>
+       /// When someone is about tom scann master card
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void BtnScan_Click(object sender, RoutedEventArgs e)
         {
             App.StopWorker();
             this.BtnGet.Visibility = Visibility.Visible;
         }
-
+        /// <summary>
+        /// Gets from the DataBase recetly scanned master card
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnGet_Click(object sender, RoutedEventArgs e)
         {
             this.CardNumberTxtBox.Text=$"{GraphBLL.GetLast()}";
@@ -46,13 +54,20 @@ namespace App1
             App.StartWorker();
         }
 
+        /// <summary>
+        /// Add to the DataBase admin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Register_Click(object sender, RoutedEventArgs e)
         {
             var ScanerCode = this.CardNumberTxtBox.Text;
+            //if it is reaally the master card number
             if (this.LoginBLL.CheckAdminCode(ScanerCode))
             {
                 var UserName = this.UserNameTxtBox.Text;
                 var Password = this.PasswordTxtBox.Text;
+                // Creates admin
                 this.LoginBLL.CreateUser(UserName, Password);
                 this.ValidateTxtBox.Visibility = Visibility.Collapsed;
                 this.Frame.Navigate(typeof(LoginPage));
@@ -62,13 +77,20 @@ namespace App1
                 this.ValidateTxtBox.Visibility = Visibility.Visible;
             }
         }
-
+        /// <summary>
+        /// Cencel the registration
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cencel_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LoginPage));
-
         }
-
+        /// <summary>
+        /// Shows dialog when the button pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteAllUsers_Click(object sender, RoutedEventArgs e)
         {
             DisplayDeleteFileDialog();
@@ -90,6 +112,7 @@ namespace App1
             /// Otherwise, do nothing.
             if (result == ContentDialogResult.Primary)
             {
+                //deletes all the admins from the DataBase
                 this.LoginBLL.DeleteAllAdminUsers();
             }
             else

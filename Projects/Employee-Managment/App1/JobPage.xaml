@@ -44,8 +44,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel>
-            <Button Content="Refresh" Name="BtnRefresh" HorizontalAlignment="Center" FontSize="17" Padding="10 " Width="200" Height="50" Click="BtnRefresh_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Refresh" Name="BtnRefresh"  HorizontalAlignment="Center" FontSize="17" Padding="10 " Width="200" Height="50" Click="BtnRefresh_Click"/>
+            <CheckBox x:Name="AutomaticRefreshCheckBox" 
+          Content="Automatic Refresh."  HorizontalAlignment="Right" Margin="50" Unchecked="AutomaticRefreshCheckBox_Unchecked" Checked= "AutomaticRefreshCheckBox_Checked"/>
         </StackPanel>
     </StackPanel>
 

@@ -27,10 +27,11 @@ namespace App1
     /// </summary>
     public sealed partial class App : Application
     {
-        public static bool BGWorker = true;
+        public static bool PressedScanButton = true;
         DBContext EmpContex;
+        private static SerialPort mySerialPort;
         // Background
-        private BackgroundWorker bw = new BackgroundWorker();
+        private BackgroundWorker BackGroundWorker = new BackgroundWorker();
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -40,17 +41,17 @@ namespace App1
         {
             this.InitializeComponent();
 
-            BGWorker = true;
+            PressedScanButton = true;
             this.EmpContex = new DBContext();
             this.Suspending += OnSuspending;
 
             CheckDate();
             //Creates BackgroundWorker
-            bw.WorkerReportsProgress = true;
-            bw.WorkerSupportsCancellation = true;
-            bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+            BackGroundWorker.WorkerReportsProgress = true;
+            BackGroundWorker.WorkerSupportsCancellation = true;
+            BackGroundWorker.DoWork += new DoWorkEventHandler(BackGroundWorker_Do_Work);
             //bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
-            bw.RunWorkerAsync();
+            BackGroundWorker.RunWorkerAsync();
         }
 
 
@@ -63,11 +64,11 @@ namespace App1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        private void BackGroundWorker_Do_Work(object sender, DoWorkEventArgs e)
         {
             //Connects to ARDUINO
             BackgroundWorker worker = sender as BackgroundWorker;
-            SerialPort mySerialPort = new SerialPort("COM4");
+            mySerialPort = new SerialPort("COM4");
             mySerialPort.BaudRate = 9600;
             mySerialPort.Open();
 
@@ -82,9 +83,9 @@ namespace App1
                     cmd = cmd + $"{(mySerialPort.ReadLine())}";
                     cmd = cmd.Substring(0, cmd.Length - 1);
                 }
-
+                ;
                 //If Someone Pressed "SCAN BTN" int the "CREATE PAGE"
-                if (BGWorker == false)
+                if (PressedScanButton == false)
                 {
                     Lastscaned CardNumber = new Lastscaned()
                     {
@@ -95,9 +96,10 @@ namespace App1
                     //Add to Database The Scanned code 
                     //To be used when pressed "GET BTN"
 
-                    BGWorker = true;
+                    PressedScanButton = true;
                     //Send to ARDUINO not to wait for Person
                     mySerialPort.Write("ScanedCardForRegistration");
+                    ;
                 }
                 //Checks for invalid codes
                 else if (cmd.Length > 3 && cmd.Substring(cmd.Length - 2) != "83")
@@ -108,11 +110,13 @@ namespace App1
                     {
                         // 0 - Sent to ARDUINO that there is no Employee with this Code
                         mySerialPort.Write("0");
+                        ;
                     }
                     else
                     {
                         //Sends to ARDUINO the FirsName and LastName of the currently scanned Employee
                         mySerialPort.Write($"{CurEmp.FirstName} {CurEmp.LastName}");
+                        ;
                         Employeegraph GraphEmployee = this.EmpContex.Employeegraph.FirstOrDefault(x => x.EmployeeId == CurEmp.Id);
                         //If this Employee comes to WORK
                         if (GraphEmployee == null)
@@ -150,19 +154,44 @@ namespace App1
         }
 
         /// <summary>
+        /// Turns the comunication LED on ARDUINO OFF
+        /// When Aplication is LEAVED
+        /// </summary>
+        public static void TurnOffCommunicationLed()
+        {
+            mySerialPort.Write("CommunicationOFF");
+        }
+
+        /// <summary>
+        /// Opens Door lock 
+        /// </summary>
+        public static void TriggerEmergencyAlarm()
+        {
+            mySerialPort.Write("EmergencyAlarmOn");
+        }
+
+        /// <summary>
+        /// Closes door lock
+        /// </summary>
+        public static void DeactivateEmergencyAlarm()
+        {
+            mySerialPort.Write("EmergencyAlarmOff");
+        }
+
+        /// <summary>
         /// Makes BGWorker = false;
         /// </summary>
         public static void StopWorker()
         {
             //Say that sended Arduino CODE is Used for Registration
-            BGWorker = false;
+            PressedScanButton = false;
         }
         /// <summary>
         ///  Makes BGWorker = true;
         /// </summary>
         public static void StartWorker()
         {
-            BGWorker = true;
+            PressedScanButton = true;
         }
 
         //private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -180,20 +209,26 @@ namespace App1
             //Checks if there is anything in Employeegraph TABLE
             if (EmpContex.Employeegraph.Count() > 0)
             {
+                //Checks if it is tommmorow 
                 if (this.EmpContex.Employeegraph.First().CurrentDate.Split(new string[] { ":" }, StringSplitOptions.None).First() != $"{DateTime.Now.Day}")
                 {
+                    //foreach for all the all employees camed yesterday
                     foreach (var emp in this.EmpContex.Employeegraph)
                     {
+                        //if the employee didn leave work
                         if (emp.LeaveWork != "Didnt Leave")
                         {
+                            //creates employee and adds it to moung Graph
                             Employeegraphmounght CurEmp = new Employeegraphmounght();
                             CurEmp.EmployeeId = emp.EmployeeId;
                             CurEmp.CurrentDate = emp.CurrentDate;
                             CurEmp.HoursWorked = (DateTime.Parse(emp.LeaveWork).Subtract(DateTime.Parse(emp.CameWork))).ToString().Substring(0, 5);
                             this.EmpContex.Employeegraphmounght.Add(CurEmp);
                         }
+                        //removes the employees came from yesterday
                         this.EmpContex.Employeegraph.Remove(emp);
                     }
+                    //saves the chenges 
                     this.EmpContex.SaveChanges();
                 }
             }
